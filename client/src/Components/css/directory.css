@@ -1,0 +1,59 @@
+.directory-eventpage {
+    display: flex;
+    margin-top: 40px;
+  }
+  
+  .directory-side-nav {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 20px 20px 0 11%;
+    width: 18%;
+  }
+  
+  .directory-content {
+    width: 56%;
+    background-color: #e4ebea;
+    margin: 20px 20px 0 10px;
+  }
+  
+  @media only screen and (max-width: 900px) {
+    .directory-eventpage {
+      display: block;
+      width: 80%;
+    }
+    .directory-side-nav {
+      width: 100%;
+    }
+    .directory-content {
+      margin: 20px 20px 5% 11%;
+      width: 100%;
+    }
+  }
+  
+  .text-directory {
+    width: 100%;
+    height: 50px;
+    background-color: #1c55b0;
+    color: white;
+    padding: 8px 28px;
+    font-size: 1.1em;
+  }
+  
+  .text1-directory {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    color: #343b3a;
+    padding: 10px 28px;
+    font-size: 1.3em;
+  }
+  
+  .directory-card-img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card-title {
+    font-size: 1em;
+  }
