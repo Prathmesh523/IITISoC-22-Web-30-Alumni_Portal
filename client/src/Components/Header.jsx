@@ -1,14 +1,18 @@
 import React from "react";
 import "./css/header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header(props) {
+    const navigate = useNavigate();
+    const navigateToLogin = () => {
+        navigate("/login");
+    };
     return (
         <div className="header">
             <div className="head-white">
                 <div className="head-text">
                     <div style={{ float: "left" }}>Indian Institute Of Technology Indore</div>
-                    <div style={{ float: "right", paddingBottom: "10px" }}><button type="submit" className="btn btn-success">LOGIN / REGISTER</button></div>
+                    <div style={{ float: "right", paddingBottom: "10px" }}><button type="submit" className="btn btn-success" onClick={navigateToLogin}>LOGIN / REGISTER</button></div>
                 </div>
             </div>
             <img src={props.myLogo} className="logo"></img>
@@ -46,7 +50,7 @@ function Header(props) {
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><Link className="dropdown-item" to="/stories">Alumni Stories</Link></li>
-                                            <li><a className="dropdown-item" href="#">Alumni Magazine</a></li>
+                                            <li><Link className="dropdown-item" to="/privacypolicy">Alumni Magazine</Link></li>
                                             <li><a className="dropdown-item" href="#">Institute Updates</a></li>
                                             <li><a className="dropdown-item" href="#">Gallery</a></li>
                                             <li><a className="dropdown-item" href="#">Alumni Achievements</a></li>
@@ -58,14 +62,14 @@ function Header(props) {
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><Link className="dropdown-item" to="/directory">Alumni - List View</Link></li>
-                                            <li><a className="dropdown-item" href="#">Alumni - Batchwise</a></li>
+                                            <li><Link className="dropdown-item" to="/batch">Alumni - Batchwise</Link></li>
                                         </ul>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">OPPORTUNITIES</a>
+                                        <Link className="nav-link" to="/opportunities">OPPORTUNITIES</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">CONTACT US</a>
+                                        <Link className="nav-link" to="/contactus">CONTACT US</Link>
                                     </li>
                                 </ul>
                             </div>

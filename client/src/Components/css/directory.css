@@ -57,3 +57,16 @@
   .card-title {
     font-size: 1em;
   }
+
+  .yearbook {
+    margin: 0 11%;
+    width: 78%;
+  }
+
+  .batch-cards {
+    width: 76%;
+    margin: 0 12%;
+  }
+.card:hover {
+    box-shadow: 2.5px 2px 2.5px 2px #d4dcdc;
+}
