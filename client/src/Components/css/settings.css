@@ -29,6 +29,7 @@
     border: 1px solid rgb(153, 166, 170);
     border-radius: 5%;
     font-size: 0.85em;
+    padding: 1%;
     margin-right: 6%;
     font-family: 'Times New Roman', Times, serif;
     box-shadow: 0.2px 0.2px 0.2px 0.2px rgb(153, 166, 170);
@@ -42,7 +43,7 @@
 .black-box {
     width: 100%;
     height: 40%;
-    background-color: black;
+    background-color: #064789;
     color: white;
     padding: 8% 11%;
     font-size: 30px;

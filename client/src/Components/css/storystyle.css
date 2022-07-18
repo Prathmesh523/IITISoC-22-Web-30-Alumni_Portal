@@ -1,0 +1,159 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*
+    #BDEDFF
+    #ADDFFF
+    */
+}
+
+.diTableView {
+    display: flex;
+    width: 100%;
+    height: 900px;
+    font-family: "DroidArabicKufi", "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
+.difilterSide {
+    width: 30%;
+    min-height: 820px;
+    background-color: violet;
+}
+
+.diRightSide {
+    width: 65%;
+    min-height: 820px;
+    background-color: #f0f8f7;
+    padding: 20px;
+}
+
+.dirsTopBlue {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    background-color: #1c55b0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: white;
+}
+
+.dirsBlueBelow {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+    word-spacing: 4px;
+}
+
+.sendMailBtn {
+    background: none;
+    outline: none;
+    border: none;
+    margin-left: auto;
+    margin-right: 3%;
+    font-size: 16px;
+    font-weight: 500;
+    color: green;
+}
+
+.downloadBtn {
+    background: green;
+    outline: none;
+    border: none;
+    margin-right: 2%;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    padding: 8px;
+}
+
+.sendMailBtn:hover {
+    cursor: pointer;
+    color: #33699ec4;
+    text-decoration: underline;
+}
+
+.downloadBtn:hover {
+    cursor: pointer;
+    background: none;
+    color: #33699ec4;
+    border: 2px solid #33699ec4;
+}
+
+.dirsTable {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.listTable {
+    width: 100%;
+    background: white;
+    border-spacing: 0px;
+
+}
+
+.listTable thead {
+    height: 35px;
+    background-color: #d4f0fa;
+}
+
+.listTable thead td {
+    border-top: 2px solid #1c55b04f;
+    height: 50px;
+}
+
+.listTable tbody td {
+    height: 60px;
+}
+
+.listTable td {
+    padding: 5px;
+    border-bottom: 2px solid #1c55b04f;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.listTable #checkBoxTd {
+    width: 3%;
+    padding-left: 1%;
+    text-align: center;
+}
+
+.userImg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 60px;
+}
+
+.nameImgTd {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+    .diTableView {
+        display: block;
+        width: 83%;
+    }
+    .directory-side-nav {
+        width: 100%;
+      }
+    .diRightSide {
+        margin: 5px 20px 5% 11%;
+        width: 100%;
+    }
+}

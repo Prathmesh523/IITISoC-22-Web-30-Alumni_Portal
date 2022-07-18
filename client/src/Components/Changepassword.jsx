@@ -11,13 +11,13 @@ function Changepassword() {
                         <div className="form-group">
                             <div className="input-group">
                                 <span className="input-group-addon"><KeyIcon sx={{ my: "10px" }} /></span>
-                                <input type="password" className="form-control" name="oldpassword" placeholder="Enter Old Password" required="required" />
+                                <input type="password" className="form-control shadow-none" name="oldpassword" placeholder="Enter Old Password" required="required" />
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="input-group">
                                 <span className="input-group-addon"><KeyIcon sx={{ my: "10px" }} /></span>
-                                <input type="password" className="form-control" name="newpassword" placeholder="Enter new Password" required="required" />
+                                <input type="password" className="form-control shadow-none" name="newpassword" placeholder="Enter new Password" required="required" />
                             </div>
                         </div>
                         <div className="form-group">

@@ -99,6 +99,10 @@ nav#sideEvents ul li:hover:before {
   width: 54%;
 }
 
+.card-content h5:hover {
+  color:#1c55b0;
+}
+
 table#card-table {
   margin: 13px 0px;
 }
@@ -165,7 +169,6 @@ div#story-heading a:hover {
   width: 100%;
   margin-bottom: 3%;
   box-shadow: 1px 1px 3px 3px rgba(223, 204, 204, 0.829);
-  position: relative;
 }
 
 .add-event-header {
@@ -180,56 +183,16 @@ div#story-heading a:hover {
 }
 
 .add-hr1 {
-  width: 35%;
+  width: 50%;
   height: 4px;
   background-color: green;
   float: left;
 }
 .add-hr2 {
-  width: 30%;
+  width: 50%;
   height: 4px;
   background-color: rgb(169, 220, 244);
   float: left;
-}
-.add-hr3 {
-  width: 35%;
-  height: 4px;
-  background-color: rgb(169, 220, 244);
-  float: left;
-}
-
-.add-step1 {
-  position: absolute;
-  left: 32%;
-  top: 9%;
-  float: left;
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  height: 35px;
-  width: 35px;
-  background-color: green;
-  color: white;
-  font-weight: bold;
-}
-
-.add-step2 {
-  position: absolute;
-  left: 65%;
-  top: 9%;
-  float: left;
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  height: 35px;
-  width: 35px;
-  background-color: rgb(169, 220, 244);
-  color: white;
-  font-weight: bold;
 }
 
 .get-in-touch {
@@ -252,8 +215,9 @@ div#story-heading a:hover {
 .add-event-end-buttons {
   margin: 5% auto 2%;
 }
-@media only screen and (max-width: 800px){
-  .add-step1, .add-step2 {
-    display: none;
-  }
+.date-picker input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding-left: 10px;
 }

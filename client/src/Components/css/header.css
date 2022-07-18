@@ -1,4 +1,10 @@
 /* Header CSS */
+a {
+  cursor: pointer;
+}
+.go-to-profile:hover {
+  background-color: rgb(218, 231, 235);
+}
 .header {
     display: block;
     height:118px;
@@ -104,4 +110,24 @@
     .dropdown-menu {
       background-color: white;
     }
+  }
+
+  .three-dots {
+    width: 35px;
+    height: 35px;
+    float: right;
+    cursor: pointer;
+    color: #FCC;
+    padding-top: 5px;
+    padding-left: 5px;
+  }
+  .three-dots:hover {
+    border-radius: 100%;
+    background-color: rgb(218, 231, 235);
+  }
+  .three-dot-menu {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 50;
+    line-height: 32px;
   }

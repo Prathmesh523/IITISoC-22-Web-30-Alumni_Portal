@@ -4,7 +4,6 @@ import PeopleCard from "./PeopleCard";
 import Yearbook from "./images/yearbook.png";
 
 function Batchwiselist() {
-    console.log(Yearbook);
     return (
         <div>
             <img className="yearbook" src={Yearbook} alt="yearbook"></img>

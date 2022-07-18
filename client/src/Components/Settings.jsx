@@ -10,19 +10,16 @@ import { useForm, Controller } from "react-hook-form";
 function Settings() {
     const [state, setState] = useState({ phone: "" });
     const { handleSubmit, control } = useForm();
-    const [viagradjoin, setViagradjoin] = useState(graduateYears);
-    const [joinyears, setJoinyears] = useState(joiningYears);
     const [enter, setenter] = useState("");
     return (
         <div className="head-set">
             <div className="settings">
-                <div className="title"><h4>Account Settings
-                </h4></div>
+                <div className="title"><h4>Account Settings</h4></div>
                 <div className="buttons-container">
-                    <button className="buttons">GO TO PROFILE</button>
+                    <button className="buttons"><Link className="link-item" to="/profile">GO TO PROFILE</Link></button>
                     <button className="buttons"><Link className="link-item" to="/changepassword">CHANGE PASSWORD</Link></button>
                     <button className="buttons" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >DELETE ACCOUNT</button>
-                    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -35,8 +32,8 @@ function Settings() {
                                     <div>
                                         <form>
                                             <div className="form-group">
-                                                <label for="password" className="form-label" style={{color: "Blue"}}>Confirm Your Password to proceed:</label>
-                                                <input type="password" onChange={(event) => {setenter(event.target.value)}} id="password" className="form-control" name="newpassword" required="required" />
+                                                <label htmlFor="password" className="form-label" style={{color: "Blue"}}>Confirm Your Password to proceed:</label>
+                                                <input type="password" value={enter} onChange={(event) => {setenter(event.target.value)}} id="password" className="form-control shadow-none" name="newpassword" required="required" />
                                             </div>
                                         </form>
                                     </div>
@@ -50,21 +47,21 @@ function Settings() {
                     </div>
                 </div>
                 <div className="settings-container">
-                    <form onSubmit={handleSubmit(data => console.log(data))} class="row g-4">
-                        <div class="col-md-6">
-                            <label for="first_name" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="first_name" required />
+                    <form onSubmit={handleSubmit(data => console.log(data))} className="row g-4">
+                        <div className="col-md-6">
+                            <label htmlFor="first_name" className="form-label">First Name</label>
+                            <input type="text" className="form-control shadow-none" id="first_name" required />
                         </div>
-                        <div class="col-md-6">
-                            <label for="last_name" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="last_name" />
+                        <div className="col-md-6">
+                            <label htmlFor="last_name" className="form-label">Last Name</label>
+                            <input type="text" className="form-control shadow-none" id="last_name" />
                         </div>
-                        <div class="col-md-6">
-                            <label for="inputEmail4" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" />
+                        <div className="col-md-6">
+                            <label htmlFor="inputEmail4" className="form-label">Email</label>
+                            <input type="email" className="form-control shadow-none" id="inputEmail4" />
                         </div>
-                        <div class="col-md-6">
-                            <label for="phone" class="form-label">Mobile</label>
+                        <div className="col-md-6">
+                            <label htmlFor="phone" className="form-label">Mobile</label>
                             <Controller
                                 render={(props) => (
                                     <PhoneInput
@@ -84,8 +81,8 @@ function Settings() {
                             />
 
                         </div>
-                        <div class="col-md-6">
-                            <label for="coursefield" class="form-label">Course/Degree</label>
+                        <div className="col-md-6">
+                            <label htmlFor="coursefield" className="form-label">Course/Degree</label>
                             <Controller
                                 render={() => (
                                     <Select options={courses} />
@@ -96,8 +93,8 @@ function Settings() {
                                 rules={{ required: true }}
                             />
                         </div>
-                        <div class="col-md-6">
-                            <label for="depfield" class="form-label">Division/Department</label>
+                        <div className="col-md-6">
+                            <label htmlFor="depfield" className="form-label">Division/Department</label>
                             <Controller
                                 render={() => (
                                     <Select options={departments} />
@@ -108,8 +105,8 @@ function Settings() {
                                 rules={{ required: true }}
                             />
                         </div>
-                        <div class="col-md-6">
-                            <label for="joinyear" class="form-label">Year Of Joining</label>
+                        <div className="col-md-6">
+                            <label htmlFor="joinyear" className="form-label">Year Of Joining</label>
                             <Controller
                                 render={() => (
                                     <Select options={joiningYears} />
@@ -120,8 +117,8 @@ function Settings() {
                                 rules={{ required: true }}
                             />
                         </div>
-                        <div class="col-md-6">
-                            <label for="gradyear" class="form-label">Year Of Joining</label>
+                        <div className="col-md-6">
+                            <label htmlFor="gradyear" className="form-label">Year Of Joining</label>
                             <Controller
                                 render={() => (
                                     <Select options={graduateYears} />
@@ -132,8 +129,8 @@ function Settings() {
                                 rules={{ required: true }}
                             />
                         </div>
-                        <div class="col-12">
-                            <input type="submit" class="btn btn-primary float-end" value="Update" />
+                        <div className="col-12">
+                            <input type="submit" className="btn btn-primary float-end" value="Update" />
                         </div>
                     </form>
                 </div>

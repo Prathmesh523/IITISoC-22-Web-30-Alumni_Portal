@@ -31,7 +31,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    max-height: 50%;
+    max-height: 55%;
 }
 
 .LoginForm {
@@ -39,7 +39,7 @@
     max-width: 750px;
     min-width: 400px;
     height: 410px;
-    max-height: 705px;
+    max-height: 1000px;
     min-height: 250px;
     display: flex;
     margin-top: 0px;
