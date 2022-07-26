@@ -10,7 +10,7 @@ function JobsCard(props) {
             <div className="card-title">
                 <div className="card-post">{props.post}</div>
                 <div className="card-place">{props.place}</div>
-                <div className="card-apply"><a href={void (0)}><AddTaskIcon /> Apply</a></div>
+                <div className="card-applys"><a href={void (0)} onClick={() => navigate("/jobsview", {state: props.data})}><AddTaskIcon /> Apply</a></div>
             </div>
             <div id="card-content">
                 <table>
@@ -33,7 +33,7 @@ function JobsCard(props) {
                 </table>
             </div>
             <div className="card-disabled-button">
-                <button type="button" className="btn btn-info btn-sm rounded-pill" disabled>Job</button>
+                <button type="button" className="btn btn-info btn-sm rounded-pill" disabled>{props.type}</button>
             </div>
             <div className="card-bottom">
                 <div style={{ marginTop: "1.1%" }}>
@@ -43,7 +43,7 @@ function JobsCard(props) {
                     <div className="card-top-bottom-heading">{props.publisher}</div>
                     <div>Published On {props.published}</div>
                 </div>
-                <div style={{ width: "45%", textAlign: "right" }}><button type="button" onClick={() => navigate("/jobsview")} className="btn btn-primary">View</button></div>
+                <div style={{ width: "45%", textAlign: "right" }}><button type="button" onClick={() => navigate("/jobsview", {state: props.data})} className="btn btn-primary">View</button></div>
             </div>
         </div>
     );

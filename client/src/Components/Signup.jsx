@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useWindowSize from "./WindowSize";
 import DatePicker from "react-datepicker";
-import { useLocation } from 'react-router-dom';
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -29,7 +28,6 @@ function Signup() {
     const size = useWindowSize();
     const navigate = useNavigate();
     const [startDate, setStartDate] = useState(new Date());
-    const [userValidateData, setuserValidateData] = useState(null);
 
     function handleChange(e) {
         setformdata({
@@ -37,7 +35,13 @@ function Signup() {
             [e.target.name]: e.target.value
         });
     };
-
+    useEffect(() => {
+        if (!userinfo.user.department) {
+            navigate("/signup");
+        } else {
+            navigate("/profile");
+        }
+    }, [userinfo]);
     function handleSubmit(e) {
         e.preventDefault();
         setformdata({ ...formdata, dob: startDate });
@@ -45,10 +49,6 @@ function Signup() {
             dispatch(successlogin(response.data));
         });
     }
-    console.log(userinfo);
-    // if(userinfo.department){
-    //     navigate("/profile");
-    // }
 
     const style = {
         control: base => ({

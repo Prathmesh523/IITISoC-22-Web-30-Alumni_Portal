@@ -29,7 +29,7 @@ function Header(props) {
                                 <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/profile")}>My Profile</a></li>
                                 <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/Privacypolicy")}>Privacy Policy</a></li>
                                 <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/Terms")}>Terms & Conditions</a></li>
-                                <li><a href={void (0)} onClick={() => {
+                                <li><a href="/login" onClick={() => {
                                     localStorage.clear();
                                     window.location.reload(false);
                                     Axios.get("http://localhost:8080/logout").then((response) => {
@@ -65,7 +65,7 @@ function Header(props) {
                                         <li><a href={void (0)} className="dropdown-item">My Profile</a></li>
                                         <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/Privacypolicy")}>Privacy Policy</a></li>
                                         <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/Terms")}>Terms & Conditions</a></li>
-                                        <li><a href={void (0)} onClick={() => {
+                                        <li><a href="/login" onClick={() => {
                                             localStorage.clear();
                                             window.location.reload(false);
                                             Axios.get("http://localhost:8080/logout").then((response) => {

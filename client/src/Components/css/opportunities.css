@@ -19,16 +19,16 @@
     border-right: 1px solid black;
     font-size: 1.1em;
 }
-.card-apply {
+.card-applys {
     padding: 0 8px;
     font-size: 1.04em;
 }
-.card-apply a {
+.card-applys a {
     text-decoration: none;
-    color: green;
+    color: rgb(6, 141, 6);
 }
-.card-apply a:hover {
-    color: blue;
+.card-applys:hover {
+    color: rgb(6, 141, 6);
 }
 div#card-content {
     margin: 3% 0 0 0;

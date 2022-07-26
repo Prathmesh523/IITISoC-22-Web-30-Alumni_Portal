@@ -199,11 +199,15 @@ div#story-heading a:hover {
   margin: 50px 100px;
   padding-bottom: 40px;
 }
-
-.add-event-photo {
+.add-event-image {
   height: 170px;
+  display: flex;
+  width: 80%;
   margin: 0 10% 5%;
   border: 1px dashed black;
+}
+.add-event-photo {
+  width: 700px;
 }
 .add-event-photo input {
   display: none;

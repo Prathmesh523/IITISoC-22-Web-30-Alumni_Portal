@@ -12,7 +12,7 @@ function EventCards(props) {
                 <img className="card-img" src={props.img} alt={props.heading}></img>
             </div>
             <div className="card-content">
-                <a href={void (0)} onClick={() => navigate("/eventsin")}><h5>{props.heading}</h5></a>
+                <a href={void (0)} onClick={() => navigate("/eventsin", {state: props.forIn})}><h5>{props.heading}</h5></a>
                 <table id="card-table">
                     <tbody>
                         <tr>
@@ -25,13 +25,13 @@ function EventCards(props) {
                         </tr>
                         <tr>
                             <td><LocationOnIcon /></td>
-                            <td>{props.location}</td>
+                            <td>{props.platform}</td>
                         </tr>
                     </tbody>
                 </table>
                 <div style={{ width: "100%" }}>
                     <button type="button" className="btn btn-secondary btn-sm rounded-pill" disabled>Past Event</button>
-                    <button onClick={() => navigate("/eventsin")} className="btn btn-primary rounded-0 float-end">View</button>
+                    <button onClick={() => navigate("/eventsin", {state: props.forIn})} className="btn btn-primary rounded-0 float-end">View</button>
                 </div>
             </div>
         </div>

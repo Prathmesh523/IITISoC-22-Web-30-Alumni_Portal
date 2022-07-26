@@ -44,6 +44,9 @@ const userSchema = new mongoose.Schema({
     location: {
         type: String
     },
+    hometown: {
+        type: String
+    },
     dob: {
         type: Date
     },
@@ -57,45 +60,21 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     network: {
-        email: {
-            type: String
-        }
+        type: Array,
+        default: []
     },
     summary: {
         type: String
     },
     workExperience: {
-        workTitle: {
-            type: String
-        },
-        companyName: {
-            type: String
-        },
-        workIndustry: {
-            type: String
-        },
-        duration: {
-            type: Number
-        }
+        type: Array,
+        default: []
     },
     education: {
-        instituteName: {
-            type: String
-        },
-        startingYear: {
-            type: Number
-        },
-        graduationYear: {
-            type: Number
-        },
-        degree: {
-            type: String
-        },
-        department: {
-            type: String
-        }
+        type: Array,
+        default: []
     }
 });
 
-const User = new mongoose.model("users", userSchema);
+const User = mongoose.model("users", userSchema);
 module.exports = User;

@@ -94,6 +94,13 @@ function Login() {
     };
 
     useEffect(() => {
+        if (userinfo.user) {
+            if (!userinfo.user.department) {
+                navigate("/signup");
+            } else {
+                navigate("/profile");
+            }
+        }
     }, [userinfo]);
 
     function loginhandle(e) {

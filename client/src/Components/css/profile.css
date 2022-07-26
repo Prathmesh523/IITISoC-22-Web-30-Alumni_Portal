@@ -415,3 +415,196 @@
 .pen:hover {
     color: #33699ec4;
 }
+
+.ip100{
+    padding-left: 40px;
+    display: block;
+}
+
+
+.ip1100{
+    padding-left: 40px;
+    margin-bottom: 60px;
+    display: inline-block;
+    /* float: left; */
+}
+
+.ip1100 label{
+    color:#1c55b0;
+    font-size: 14px;
+    font-weight: 600;
+}
+.ip1100 select{
+    width: 150px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 3px solid rgb(179, 179, 179);
+}
+
+
+.ip1000{
+    padding-left: 40px;
+    display: block;
+}
+
+.ip1000 label{
+    color:#1c55b0;
+    font-size: 14px;
+    font-weight: 600;
+}
+.ip1000 input{
+    width: 80%;
+    outline: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 3px solid rgb(179, 179, 179);
+}
+.modal_content {
+    background-color: #fefefe;
+    /* margin: 15% auto; 15% from the top and centered */
+    /* padding: 20px; */
+    /* border: 1px solid #888; */
+    height: 500px;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+
+    /* width: 80px; Could be more or less, depending on screen size */
+  }
+
+/* Modal Content/Box */
+.modal_content1 {
+    background-color: #fefefe;
+    /* margin: 15% auto; 15% from the top and centered */
+    /* padding: 20px; */
+    /* border: 1px solid #888; */
+    height: 450px;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+
+    /* width: 80px; Could be more or less, depending on screen size */
+  }
+
+  .ip11{
+    padding-left: 40px;
+    margin-top: 10px;
+    display: inline-block;
+    /* float: left; */
+}
+
+.ip11 label{
+    color:#1c55b0;
+    font-size: 14px;
+    font-weight: 600;
+}
+.ip11 select{
+    width: 300px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 3px solid rgb(179, 179, 179);
+}
+
+.para11
+{
+    display: inline-block;
+    margin-right: 50px;
+}
+.textskills
+{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid lightblue;
+}
+.ip112
+{
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    margin-right: 110px;
+}
+.textdf
+{
+    border: none;
+    border-bottom: 2px solid lightgray;
+}
+.nameOfInstitute{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.nameOfInstitute input{
+    width: 80%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.41);
+}
+
+.nameOfInstitute input:focus{
+    border-bottom: 2px solid #1c55b0;
+}
+
+.startEndYear{  
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+#send_from{
+    width: 37%;
+    margin: 25px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.41);
+}
+
+#send_from:focus{
+    border-bottom: 2px solid #1c55b0;
+}
+
+.degreeDepartment{
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    
+}
+
+.degreeDepartment input{
+    width: 38%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.41);
+    margin: 15px;
+}
+
+.degreeDepartment input:focus{
+    border-bottom: 2px solid #1c55b0;
+}
+
+.workexp
+{
+    margin-left: 60px;
+}
+.jobtitle
+{
+    font-size: 18px;
+    font-weight: 550;
+    font-family: sans-serif;
+}
+.company
+{
+    text-decoration: underline;
+    color: rgb(44, 156, 34);
+    font-weight: 600;
+    font-size: 18px;
+}
+.duration
+{
+    color: gray;
+}
