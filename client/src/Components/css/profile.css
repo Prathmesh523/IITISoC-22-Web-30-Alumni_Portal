@@ -79,7 +79,7 @@
 
 .profileLeftBox3 {
     width: 93%;
-    height: 29%;
+    height: auto;
     background-color: white;
     margin-bottom: 10%;
     box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.549);
@@ -87,7 +87,7 @@
 
 .profileLeftBox4 {
     width: 93%;
-    height: 14%;
+    height: auto;
     background-color: white;
     margin-bottom: 10%;
     box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.549);
@@ -134,11 +134,11 @@
 .leftBoxSec2 {
     width: 100%;
     height: auto;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 5%;
+    padding: 5px;
     font-size: 18px;
     font-weight: 500;
 }
@@ -158,11 +158,14 @@
 .righteducate {
     width: 100%;
     height: auto;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: left;
     text-align: left;
-    padding: 4%;
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 4%;
     font-size: 18px;
     font-weight: 500;
 }
@@ -184,8 +187,9 @@
 }
 
 .penButton {
+    margin-top: 20px;
     width: 40%;
-    height: 88.7;
+    height: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,6 +313,7 @@
     color: #33699ec4;
 }
 
+
 .editBtn2:hover {
     cursor: pointer;
     color: #33699ec4;
@@ -320,6 +325,8 @@
     font-weight: 500;
     padding-top: 2%;
 }
+
+
 
 #leftBoxSubHead {
     font-size: 15px;
@@ -337,11 +344,12 @@
     overflow: hidden;
 }
 
+
 #leftBoxSubHeadLink2 {
     font-size: 15px;
     font-weight: 400;
     margin-left: 12%;
-    line-height: 0;
+    line-height: 1.6;
     margin-bottom: 0;
     color: green;
     text-decoration: underline;
@@ -354,14 +362,14 @@
     color: green;
 }
 
-#rightBoxSubHead2 {
+.rightBoxSubHead2 {
     font-size: 18px;
     font-weight: 400;
     margin-left: 0%;
     color: green;
 }
 
-#rightBoxSubHead2:hover {
+.rightBoxSubHead2:hover {
     cursor: pointer;
     color: #33699ec4;
 }
@@ -379,7 +387,7 @@
 .profileRightBox {
     background-color: white;
     width: 95%;
-    height: 150px;
+    height: auto;
     margin-bottom: 5%;
     box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.549);
 }
@@ -387,7 +395,7 @@
 .profileRightBox3 {
     background-color: white;
     width: 95%;
-    height: 250px;
+    height:auto;
     margin-bottom: 5%;
     box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.549);
 }
@@ -587,24 +595,69 @@
     border-bottom: 2px solid #1c55b0;
 }
 
-.workexp
-{
-    margin-left: 60px;
+.workexp{
+    display:flex;
+    justify-content: center;
+    width: 100%;
 }
-.jobtitle
-{
+.jobtitle{
+    margin-right: 100px;
     font-size: 18px;
     font-weight: 550;
     font-family: sans-serif;
+    
 }
-.company
-{
+.company{
+    margin-right: 100px;
     text-decoration: underline;
     color: rgb(44, 156, 34);
     font-weight: 600;
     font-size: 18px;
 }
-.duration
+.duration{
+    margin-right: 100px;
+    display: flex;
+    width: 100%;
+}
+
+.propic1
 {
-    color: gray;
+    height: 45px;
+    margin-top: 10px;
+    margin-right: 15px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+.propic2
+{
+    background-color: #33689e;
+    height: 28px;
+    width: 28px;
+    padding-top: 5px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 100%;
+}
+.cards
+{
+    display: flex;
+    margin-left: 14%;
+}
+.cont{
+    text-align: left;
+    margin-right: 80px;
+    margin-top: 10px;
+}
+.namee
+{
+    margin-bottom: 0;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+.descri
+{
+    margin-top: 0;
+    font-size: 12px;
+    font-family: sans-serif;
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./css/events.css";
 import Axios from "axios";
-import FileBase64 from 'react-file-base64';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -9,7 +8,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useWindowSize from "./WindowSize";
 import EventCards from "./EventCards";
-import SearchIcon from '@mui/icons-material/Search';
 import LegendToggleIcon from '@mui/icons-material/LegendToggle';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -36,8 +34,7 @@ function Events() {
 
     //Texts
     const [selectedFiles, setSelectedFiles] = useState();
-    const [image, setImage ] = useState("");
-    const [ url, setUrl ] = useState("");
+    const [image, setImage] = useState("");
     const [formdata, setformdata] = useState({
         name: "",
         sdate: new Date(),
@@ -47,15 +44,20 @@ function Events() {
         venue: "",
         city: "",
         email: "",
-        file: {},
+        file: "",
         description: ""
     });
 
-    // Fetching Data:
-    useEffect(() => {
-        Axios.get("http://localhost:8080/getEvents").then((response) => {
+    // Fetching Data
+
+    async function getData() {
+        await Axios.get("http://localhost:8080/getEvents").then((response) => {
             seteventsdata(response.data);
-        })
+        });
+    };
+
+    useEffect(() => {
+        getData();
     }, []);
 
     function handleChange(e) {
@@ -68,59 +70,84 @@ function Events() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         uploadImage();
-        setformdata({...formdata, file: url});
-        try {
-            const res = await Axios.post(
-                "http://localhost:8080/addEvent",
-                formdata
-            );
-        } catch (error) {
-            console.log(error);
-        }
     };
 
-    const uploadImage = () => {
+    const uploadImage = async () => {
         const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "Alumni_preset")
-        data.append("cloud_name","harshit9829")
-        fetch("  https://api.cloudinary.com/v1_1/harshit9829/image/upload",{
-        method:"post",
-        body: data
+        data.append("cloud_name", "harshit9829")
+        await fetch("  https://api.cloudinary.com/v1_1/harshit9829/image/upload", {
+            method: "post",
+            body: data
         })
-        .then(resp => resp.json())
-        .then(data => {
-        setUrl(data.url);
-        })
-        .catch(err => console.log(err))
+            .then(resp => resp.json())
+            .then(data => {
+                setformdata({ ...formdata, file: data.url });
+            })
+            .catch(err => console.log(err))
+    }
+    useEffect(() => {
+        if (formdata.file !== "") {
+            try {
+                const res = Axios.post(
+                    "http://localhost:8080/addEvent",
+                    formdata
+                );
+                getData();
+                setformdata({
+                    name: "",
+                    sdate: new Date(),
+                    stime: "",
+                    duration: "",
+                    platform: "",
+                    venue: "",
+                    city: "",
+                    email: "",
+                    file: "",
+                    description: ""
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
-
+    }, [formdata.file]);
     const renderPhotos = (source) => {
         return <span><CloseIcon onClick={() => setSelectedFiles(null)} style={{ position: "absolute", zIndex: "1", margin: "5px", fontSize: "1em", backgroundColor: "white", cursor: "pointer" }} /><img src={source} alt="" key={source} /></span>;
     };
     const size = useWindowSize();
     const user = userinfo.user.status;
 
+    let filteredData;
+    if(type==="past"){
+        filteredData = eventsdata.filter(event => { return (new Date(event.date)< date) });
+    } else if(type==="future"){
+        filteredData = eventsdata.filter(event => { return (new Date(event.date) >= date) });
+    } else if(type==="convocation"){
+        filteredData = eventsdata.filter(event => { return (event.name.match(/convocation/i)) });
+    } else if(type==="magnum"){
+        filteredData = eventsdata.filter(event => { return (event.name.match(/magnum/i)) });
+    } else{
+        filteredData = eventsdata;
+    }
     return (
         <div className="eventpage">
             <div className="side-nav">
                 <div className="input-group mb-4">
-                    <input type="text" className="form-control shadow-none" placeholder="Search by title..." aria-label="Recipient's username" aria-describedby="button-addon2" />
-                    <button className="btn btn-success" type="button" id="button-addon2"><SearchIcon /></button>
                     <div style={{ display: (size.width >= 801) ? "none" : "block" }} className="temp-button"><button className="btn btn-secondary" onClick={() => setNavappear(!navappear)} type="button"><LegendToggleIcon /></button></div>
                 </div>
                 <div style={{ display: (size.width <= 800) ? (navappear ? "block" : "none") : "block" }}>
                     <p style={{ fontSize: "1.2rem", marginBottom: "20px" }}>EVENT CATEGORIES</p>
                     <nav id="sideEvents">
                         <ul>
-                            <li><span>All Events</span><span style={{ float: "right", marginRight: "10px" }}>{eventsdata.length}</span></li>
-                            <li><span>Past Events</span></li>
-                            <li><span>Upcoming Events</span></li>
+                            <li onClick={() => navigate("/events", {state: "all"})}><span>All Events</span></li>
+                            <li onClick={() => navigate("/events", {state: "past"})}><span>Past Events</span></li>
+                            <li onClick={() => navigate("/events", {state: "future"})}><span>Upcoming Events</span></li>
                             <li><span>Categories</span></li>
                         </ul>
                     </nav>
-                    <div className="eventsname"><a className="eventsname-link" href={void (0)}>Convocation</a></div>
-                    <div className="eventsname"><a className="eventsname-link" href={void (0)}>Magnum Opus</a></div>
+                    <div className="eventsname"><a className="eventsname-link" onClick={() => navigate("/events", {state: "convocation"})} href={void (0)}>Convocation</a></div>
+                    <div className="eventsname"><a className="eventsname-link" onClick={() => navigate("/events", {state: "magnum"})} href={void (0)}>Magnum Opus</a></div>
                 </div>
             </div>
             <div className="content">
@@ -207,13 +234,13 @@ function Events() {
                             </div>
                             <div className="add-event-end-buttons">
                                 <button type="button" onClick={() => { setstep1(true); setstep2(false); }} className="btn btn-outline-success">Previous</button>
-                                <button type="submit" className="btn btn-primary float-end">Submit</button>
+                                <button type="submit" onClick={() => {setstep0(true);setstep2(false);}} className="btn btn-primary float-end">Submit</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 {
-                    eventsdata.map((event, index) => {
+                    filteredData && filteredData.map((event, index) => {
                         return <EventCards key={index} forIn={event} img={event.photo.data} heading={event.name} start={event.date.substring(0, 10)} duration={event.duration} platform={event.platform} />
                     })
                 }

@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.storiesView {
+    display: flex;
+    width: 100%;
+    height: 160px;
+    background-color: rgb(33, 33, 33) !important;
+    justify-content: center;
+}
+
+.storiesViewtitle {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 90%;
+    height: 20%;
+    margin-top: 18px;
+    padding-left: 10px;
+}
+
+#allCampusFeedLink {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    margin-right: 5px;
+}
+
+#allCampusFeed {
+    margin-top: 16px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    margin-right: 5px;
+}
+
+.stroyContent {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(245, 245, 245) !important;
+}
+
+.stroyContentMain {
+    display: block;
+    margin-top: -60px;
+    justify-content: center;
+    width: 900px;
+    height: 60%;
+    max-height: 2250px;
+    background-color: white;
+    box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.549);
+    margin-bottom: 50px;
+}
+
+.SCTopImage {
+    display: flex;
+    justify-content: center;
+    height: 250px;
+    background-image: url(../images/bgblur.jpg);
+    filter: blur(8px);
+    -webkit-filter: blur(1px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.topImageitself {
+    height: 100%;
+    width: auto;
+}
+
+.titleMain {
+    height: 70px;
+    width: 100%;
+    background-color: #A0A0A0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#titleText {
+    font-size: 30px;
+    color: white;
+    font-weight: 400;
+}
+
+.dateSeen {
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #1c55b04f;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    color: gray;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 12px;
+}
+
+.dateSymbol {
+    margin-right: 8px;
+}
+
+.contentText {
+    height: auto;
+    width: 100%;
+    display: block;
+    justify-content: left;
+    padding: 12px;
+    padding-left: 12px;
+    border-bottom: 1px solid #1c55b04f;
+
+}
+
+.contentText hr {
+    border: none;
+    background: none;
+    border-bottom: 1px solid #1c55b04f;
+}
+
+#writer {
+    font-size: 20px !important;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: rgb(33, 33, 33) !important;
+}
+
+#subHead {
+    color: rgb(33, 33, 33) !important;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#subText {
+    color: rgb(117, 117, 117) !important;
+    margin-bottom: 4px;
+    font-size: 14.5px;
+    font-weight: 400;
+}
+
+.showPiece {
+    background-color: #a0a0a071;
+    height: 40px;
+    width: 120px;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 15px 15px;
+    font-size: 15px;
+}
+
+.posted {
+    height: 110px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 1px solid #1c55b04f;
+}
+
+.postedByAd {
+    height: 100%;
+    width: 35%;
+    display: flex;
+    margin-top: -15px;
+}
+
+.adminImg {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminBlue {
+    height: 70px;
+    border-radius: 50%;
+}
+
+.adminInfo {
+    height: 100%;
+    width: 60%;
+    font-size: 17px;
+    padding-top: 12%;
+}
+
+#iitiAdText {
+    color: rgb(33, 33, 33) !important;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#adText {
+    color: rgb(117, 117, 117) !important;
+    font-size: 14.5px;
+    font-weight: 400;
+}
+
+#postText {
+    margin-left: 12px;
+    margin-top: 16px;
+    color: rgb(117, 117, 117) !important;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.likeClass {
+    height: 65px;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #1c55b04f;
+}
+
+.grayClass {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 12px;
+    background-color: #a0a0a071;
+}
+
+#liketext {
+    font-size: 19px;
+    font-weight: 400;
+    color: rgb(117, 117, 117) !important;
+    cursor: pointer;
+    margin-right: 4px;
+}

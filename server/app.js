@@ -2,20 +2,24 @@ require('dotenv').config()
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const { cloudinary } = require('./utils/cloudinary');
 const passport = require("passport");
-const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const User = require("./models/Users");
 const Event = require("./models/Events");
+const Story = require("./models/Stories");
+const Gallery = require("./models/Gallery");
 const Opportunities = require('./models/Opportunities');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, // allow session cookie from browser to pass through
+}));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
@@ -32,10 +36,48 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.use(cookieParser("secretcode"));
+app.use(cookieParser("Our little secret."));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig")(passport);
+
+app.get("/login/success", (req, res) => {
+    if (req.user === "Not Google") {
+        res.send({ data: "Not Google" })
+    } else {
+        User.findOne({ username: req.user.username }, (err, user) => {
+            if (err) console.log(err);
+            if (user) res.send(user);
+        })
+    }
+});
+app.get("/login/failed", (req, res) => {
+    res.status(401).json({
+        success: false,
+        message: "failure",
+    });
+});
+
+app.get('/auth/google',
+    passport.authenticate('google', {
+        scope: ['https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email']
+    }));
+
+app.get('/auth/google/signup',
+    passport.authenticate('google', { failureRedirect: "/login/failed", successRedirect: "http://localhost:3000/login" }));
+
+app.get('/auth/facebook',
+    passport.authenticate('facebook'));
+
+app.get('/auth/facebook/signup',
+    passport.authenticate('facebook', { failureRedirect: "/login/failed", successRedirect: "http://localhost:3000/login" }));
+
+app.get('/auth/linkedin',
+    passport.authenticate('linkedin'));
+
+app.get('/auth/linkedin/signup',
+ passport.authenticate('linkedin', { failureRedirect: '/login/failed', successRedirect: 'http://localhost:3000/login' }));
 
 // User Requests:
 app.post("/check-email", (req, res) => {
@@ -86,7 +128,7 @@ app.post("/find-user", (req, res) => {
 });
 
 app.post("/signup-data", (req, res) => {
-    User.updateOne({ email: req.body.email }, {
+    User.updateOne({ _id: req.body.id }, {
         $set: {
             role: req.body.role,
             department: req.body.department,
@@ -179,9 +221,25 @@ app.post("/opportunities-data", (req, res) => {
         }
     });
 });
+app.post("/add-network", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ username: req.body.username }, {
+        $push: {
+            network: req.body.data
+        }
+    }, { new: true });
+    res.send(doc);
+})
+app.post("/add-profile", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ username: req.body.username }, {
+        $set: {
+            profile: req.body.file
+        }
+    }, { new: true });
 
-app.post("/profile-data", (req, res) => {
-    User.updateOne({ username: req.body.username }, {
+    res.send(doc);
+})
+app.post("/profile-data", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ username: req.body.username }, {
         $set: {
             skills: req.body.skills,
             location: req.body.location,
@@ -191,24 +249,14 @@ app.post("/profile-data", (req, res) => {
             dob: req.body.dob,
             summary: req.body.summary
         }
-    }, async (err) => {
-        if (err) console.log(err);
-        else console.log("updated");
-    });
+    }, { new: true });
 
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-        if (err) console.log(err);
-        if (doc) {
-            res.send(doc);
-            console.log(doc);
-        }
-    });
+    res.send(doc);
 });
 
 
-app.post("/profile-data-work", (req, res) => {
-    console.log(req.body);
-    User.updateOne({ username: req.body.username }, {
+app.post("/profile-data-work", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ username: req.body.username }, {
         $push: {
             workExperience: {
                 workTitle: req.body.workTitle,
@@ -217,22 +265,13 @@ app.post("/profile-data-work", (req, res) => {
                 duration: req.body.duration
             }
         }
-    }, (err) => {
-        if (err) console.log(err);
-        else console.log("updated");
-    });
+    }, { new: true });
 
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-        if (err) console.log(err);
-        if (doc) {
-            res.send(doc);
-        }
-    });
+    res.send(doc);
 });
 
-app.post("/profile-data-education", (req, res) => {
-    console.log(req.body);
-    User.updateOne({ username: req.body.username }, {
+app.post("/profile-data-education", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ username: req.body.username }, {
         $push: {
             education: {
                 instituteName: req.body.instituteName,
@@ -242,17 +281,9 @@ app.post("/profile-data-education", (req, res) => {
                 department: req.body.department
             }
         }
-    }, (err) => {
-        if (err) console.log(err);
-        else console.log("updated");
-    });
+    }, { new: true });
 
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-        if (err) console.log(err);
-        if (doc) {
-            res.send(doc);
-        }
-    });
+    res.send(doc);
 });
 
 // Events Request
@@ -261,6 +292,26 @@ app.get("/getEvents", (req, res) => {
     Event.find({}, (err, events) => {
         if (err) console.log(err);
         else res.json(events);
+    });
+});
+app.get("/getStory", (req, res) => {
+    Story.find({}, (err, stories) => {
+        if (err) console.log(err);
+        else res.json(stories);
+    });
+});
+
+app.get("/getGallery", (req, res) => {
+    Gallery.find({}, (err, pic) => {
+        if (err) console.log(err);
+        else res.json(pic);
+    });
+});
+
+app.get("/getUser", (req, res) => {
+    User.find({}, (err, pic) => {
+        if (err) console.log(err);
+        else res.json(pic);
     });
 });
 
@@ -282,12 +333,47 @@ app.post("/addEvent", async (req, res) => {
             }
         })
         newEvent.save()
-        .then(() => res.send("Successfully Uploaded"))
+            .then(() => res.send("Successfully Uploaded"))
     } catch (err) {
         console.error(err);
         res.status(500).json({ err: 'Something went wrong' });
     }
-})
+});
+
+app.post("/addStory", async (req, res) => {
+    try {
+        const newStory = new Story({
+            title: req.body.title,
+            publishDate: req.body.publishDate,
+            highlight: req.body.highlight,
+            description: req.body.description,
+            category: req.body.category,
+            by: req.body.by,
+            photo: req.body.photo,
+            status: req.body.status
+        })
+        newStory.save()
+            .then(() => res.send("Successfully Uploaded"))
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ err: 'Something went wrong' });
+    }
+});
+app.post("/addAlbum", async (req, res) => {
+    try {
+        const newGallery = new Gallery({
+            name: req.body.name,
+            date: req.body.date,
+            by: req.body.by
+        });
+        newGallery.photos.push(req.body.photos);
+        newGallery.save()
+            .then(() => res.send("Successfully Uploaded"))
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ err: 'Something went wrong' });
+    }
+});
 
 app.listen(8080, function () {
     console.log("Server started on port 8080.");

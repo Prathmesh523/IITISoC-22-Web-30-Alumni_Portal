@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function GalleryCard(props) {
+    const navigate = useNavigate();
     return (
         <div className="gallery-card">
-            <a href="/galleries"><img className="gallery-image" src={props.src} alt={props.heading} /><div className="gallery-left">
+            <a onClick={() => navigate("/galleries", {state: props.pics})}><img className="gallery-image" src={props.src} alt={props.heading} /><div className="gallery-left">
                 {props.heading}
             </div></a>
 

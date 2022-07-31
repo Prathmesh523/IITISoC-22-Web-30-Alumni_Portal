@@ -2,25 +2,33 @@ import React, { useEffect, useState } from "react";
 import "./css/profile.css";
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
+import NetworkCard from "./NetworkCard";
+import Select from "react-select";
 import DatePicker from "react-datepicker";
 import R from "./images/R.jpg";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useDispatch, useSelector } from 'react-redux';
 import { successlogin } from "../actions";
+import CloseIcon from '@mui/icons-material/Close';
+import { joiningYears, graduateYears } from "./Arrays";
 
 function Profile() {
     const state = useSelector(state => state.user);
     const user = state.user;
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [image, setImage] = useState("");
+    const [upimage, setupimage] = useState("");
+    const [selectedFiles, setSelectedFiles] = useState();
     const [formdata, setformdata] = useState({
         username: user.username,
-        skills: String(user.skills),
+        skills: (user.skills !== "" && user.skills != null) ? String(user.skills) : "",
         location: String(user.location),
-        hometown: String(user.hometown),
+        hometown: (user.hometown !== "" && user.hometown != null && user.hometown !== "undefined") ? String(user.hometown) : "",
         gender: String(user.gender),
         maritalStatus: String(user.marriageStatus),
         dob: new Date(user.dob),
-        summary: String(user.summary),
+        summary: (user.summary !== "" && user.summary != null && user.summary !== "undefined") ? String(user.summary) : "",
     });
     const [formdata1, setformdata1] = useState({
         username: user.username,
@@ -38,29 +46,82 @@ function Profile() {
         department: ""
     });
     useEffect(() => {
-    },[state]);
+    }, [state]);
+
+    async function handlePhoto(e) {
+        e.preventDefault();
+        if(image!=="") uploadImage();
+    }
+
+    const uploadImage = async () => {
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "Alumni_preset")
+        data.append("cloud_name", "harshit9829")
+        await fetch("  https://api.cloudinary.com/v1_1/harshit9829/image/upload", {
+            method: "post",
+            body: data
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                setupimage(data.url);
+            })
+            .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        if (upimage !== "") {
+            try {
+                Axios.post(
+                    "http://localhost:8080/add-profile",
+                    {username: user.username, file: upimage}
+                ).then((response) => {
+                    dispatch(successlogin(response.data));
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }, [upimage]);
+
     async function handleSubmit(e) {
         e.preventDefault();
         await Axios.post("http://localhost:8080/profile-data", formdata).then((response) => {
             dispatch(successlogin(response.data));
         });
-        navigate("/profile");
     }
     async function handleSubmitWork(e) {
         e.preventDefault();
         await Axios.post("http://localhost:8080/profile-data-work", formdata1).then((response) => {
             dispatch(successlogin(response.data));
         });
-        navigate("/profile");
+        setformdata1({
+            username: user.username,
+            workTitle: "",
+            companyName: "",
+            workIndustry: "",
+            duration: "",
+        })
     }
     async function handleSubmitEducation(e) {
         e.preventDefault();
         await Axios.post("http://localhost:8080/profile-data-education", formdata2).then((response) => {
             dispatch(successlogin(response.data));
         });
-        navigate("/profile");
+        setformdata2({
+            username: user.username,
+            instituteName: "",
+            startYear: "",
+            gradYear: "",
+            degree: "",
+            department: ""
+        })
     }
-    console.log(user)
+
+    const renderPhotos = (source) => {
+        return <span><CloseIcon onClick={() => setSelectedFiles(null)} style={{ position: "absolute", zIndex: "1", margin: "5px", fontSize: "1em", backgroundColor: "white", cursor: "pointer" }} /><img src={source} alt="" key={source} /></span>;
+    };
+
     return (
         <div className="profilePage">
             <div className="profileTopImg">
@@ -69,10 +130,38 @@ function Profile() {
                 <div className="profileLeftNav">
                     <div className="profileLeftBox">
                         <div className="profImgTop">
-                            <img src={R} alt="" className="profileMainImg" />
+                            <img src={user.profile} alt="" className="profileMainImg" />
                         </div>
-                        <button className="changeImg">Change Profile Image</button>
-                        <p id="ImgName"> {user.name} <i className="fa-solid fa-pen pen"></i></p>
+                        <button class="changeImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop0">Change Profile Image</button>
+                        <div className="modal fade" id="staticBackdrop0" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div className="modal-dialog">
+                                <form onSubmit={handlePhoto}>
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="staticBackdropLabel">Change Profile Photo</h5>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <div className="add-event-image">
+                                                <div className="add-event-photo">
+                                                    <label style={{ height: "100%" }} htmlFor="add-photo">
+                                                        <div><AddPhotoAlternateIcon style={{ fontSize: "85px", color: "white", backgroundColor: "green", margin: "5% auto 2%" }} /></div>
+                                                        <input id="add-photo" name="file" onChange={(e) => { setImage(e.target.files[0]); setSelectedFiles(URL.createObjectURL(e.target.files[0])); URL.revokeObjectURL(e.target.files[0]); }} type="file" accept="image/*" />
+                                                        Upload Photo
+                                                    </label>
+                                                </div>
+                                                <div style={{ marginBottom: "5%", display: (selectedFiles) ? "block" : "none" }} className="gallery-add-result">{renderPhotos(selectedFiles)}</div>
+                                            </div>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" onClick={() => {navigate("/profile");}} className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <p id="ImgName"> {user.name} <i className="fa-solid fa-pen pen" onClick={() => navigate("/settings")}></i></p>
                         <p id="ImgText">{user.role}, Class of {user.yearOfGraduation}</p>
                         <p id="ImgText">{user.course} {user.department}</p>
                     </div>
@@ -129,7 +218,7 @@ function Profile() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" className="btn btn-primary">Submit</button>
+                                                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -137,7 +226,7 @@ function Profile() {
                             </div>
                         </div>
                         <div className="leftBoxSec">
-                            <p style={{ fontSize: "15px" }}>Skills: {user.skills}</p>
+                            <p style={{ fontSize: "15px" }}>Skills: {(user.skills) ? user.skills : ""}</p>
                         </div>
                     </div>
 
@@ -198,7 +287,7 @@ function Profile() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" className="btn btn-primary">Submit</button>
+                                                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                                             </div>
                                         </form>
                                     </div>
@@ -213,11 +302,11 @@ function Profile() {
                             </div>
                             <div className="leftBoxSecItem">
                                 <span className="fas fa-home"></span>
-                                <p id="leftBoxSubHeadLink2">{user.hometown}</p>
+                                <p id="leftBoxSubHeadLink2">{(user.hometown) ? user.hometown : ""}</p>
                             </div>
                             <div className="leftBoxSecItem">
                                 <span className="fa-solid fa-cake-candles"></span>
-                                <p id="leftBoxSubHead" style={{ marginLeft: "42px" }}>{user.dob.substr(0, 10)}</p>
+                                <p id="leftBoxSubHead" style={{ marginLeft: "42px" }}>{user && (user.dob.substring(0, 8) + new Date(user.dob).getDate())}</p>
                             </div>
                             <div className="leftBoxSecItem">
                                 <span className="fa-solid fa-user"></span>
@@ -236,11 +325,12 @@ function Profile() {
                                 <span className="fas fa-info"></span>
                             </div>
                             <p id="leftBoxHeads" style={{ paddingTop: "4%" }}>Network </p>
-                            <button className="editBtn">Add People</button>
                         </div>
                         <div className="leftBoxSec2">
-                            <p id="leftBoxSubHead2"> <i className="fa-solid fa-circle-plus big"></i> Add IIT Indore friends and
-                                contacts to your growing network.</p>
+                            {
+                                (user.network == null || user.network && user.network.length === 0) ? (<p id="leftBoxSubHead2"> <i className="fa-solid fa-circle-plus big"></i> Add IIT Indore friends and
+                                    contacts to your growing network.</p>) : user.network.map((inf, index) => <div><NetworkCard key={index} name={inf.name} status={inf.status} year={inf.yearOfJoining} /><NetworkCard key={index} name={inf.name} status={inf.status} year={inf.yearOfJoining} /></div>)
+                            }
                         </div>
                     </div>
                 </div>
@@ -268,7 +358,7 @@ function Profile() {
                                                             <label >Add summary</label>
                                                             <br />
                                                             <p className="ip400">
-                                                                <textarea id="email_text" value={formdata.summary} onChange={(e) => setformdata({ ...formdata, summary: e.target.value })} rows="8" cols="59" name="email_text" placeholder="Type you text here"></textarea>
+                                                                <textarea id="email_text" value={formdata.summary} onChange={(e) => setformdata({ ...formdata, summary: e.target.value })} rows="8" cols="59" name="summary" placeholder="Type you text here"></textarea>
                                                             </p>
                                                         </p>
 
@@ -278,7 +368,7 @@ function Profile() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" className="btn btn-primary">Submit</button>
+                                                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -286,9 +376,9 @@ function Profile() {
                             </div>
                         </div>
                         <div className="rightBoxSec2">
-                            <p id="rightBoxSubHead2" style={{ fontSize: "16px", display: !user.summary ? "block" : "none" }}> <i className="fa-solid fa-circle-plus big"></i> Use summary to share what
+                            <p className="rightBoxSubHead2" style={{ fontSize: "16px", display: (user.summary === null || user.summary === "") ? "block" : "none" }}> <i className="fa-solid fa-circle-plus big"></i> Use summary to share what
                                 you do, your achievements or the opportunities you're looking for.</p>
-                            <div style={{ display: !user.summary ? "none" : "block" }}>{user.summary}</div>
+                            <div style={{ display: (user.summary === "undefined" || user.summary === null || user.summary === "") ? "none" : "block" }}>{(user.summary) ? user.summary : ""}</div>
                         </div>
                     </div>
                     <div className="profileRightBox">
@@ -335,7 +425,7 @@ function Profile() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" className="btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={() => navigate("/profile")} className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -343,15 +433,18 @@ function Profile() {
                             </div>
                         </div>
                         <div className="rightBoxSec2">
-                            <p id="rightBoxSubHead2" style={{display: user.workExperience.length===0?"block":"none"}}> <i className="fa-solid fa-circle-plus big"></i> Share your work history to
+                            <p className="rightBoxSubHead2" style={{ display: user.workExperience && (user.workExperience.length === 0) ? "block" : "none" }}> <i className="fa-solid fa-circle-plus big"></i> Share your work history to
                                 enhance your networking potential.</p>
                             <div>{
-                                user.workExperience.map(work => {
+                                user.workExperience && user.workExperience.map((work, index) => {
                                     return (
-                                        <div class="workexp">
-                                            <div class="jobtitle">{work.workTitle}</div>
-                                            <div class="company">{work.companyName}</div>
-                                            <div class="duration">{work.duration} ({work.workIndustry})</div>
+                                        <div key={index} className="workexp">
+                                            <div className="jobtitle">{work.workTitle}</div>
+                                            <div className="company">{work.companyName}</div>
+                                            <div className="duration">{work.duration} ({work.workIndustry})</div>
+                                            <div className="penButton">
+                                                <i className="fa-solid fa-pen pen"></i>
+                                            </div>
                                         </div>
                                     )
                                 })
@@ -382,13 +475,8 @@ function Profile() {
                                                             <input type="text" value={formdata2.instituteName} onChange={(e) => setformdata2({ ...formdata2, instituteName: e.target.value })} placeholder="Name of the Institute" />
                                                         </div>
                                                         <div className="startEndYear">
-                                                            <select name="send_from" onChange={(e) => setformdata2({ ...formdata2, startYear: e.target.value })} id="send_from">
-                                                                <option value="#"> Select starting Year</option>
-                                                            </select>
-
-                                                            <select name="send_from" onChange={(e) => setformdata2({ ...formdata2, gradYear: e.target.value })} id="send_from">
-                                                                <option value="#"> Select Graduation Year</option>
-                                                            </select>
+                                                            <div className="boxx" style={{ width: "200px", border: "0", margin: "15px 1px" }}><Select name="joining" onChange={(option) => setformdata2({ ...formdata2, startYear: option.value })} placeholder="Start Year" options={joiningYears} /></div>
+                                                            <div className="boxx" style={{ width: "200px", border: "0", margin: "15px 0px 15px 30px" }}><Select name="graduation" onChange={(option) => setformdata2({ ...formdata2, gradYear: option.value })} placeholder="End Year" options={graduateYears} /></div>
                                                         </div>
                                                         <div className="degreeDepartment">
                                                             <input type="text" value={formdata2.degree} onChange={(e) => setformdata2({ ...formdata2, degree: e.target.value })} className="degree" placeholder="Degree" />
@@ -399,7 +487,7 @@ function Profile() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" className="btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={() => navigate("/profile")} className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -407,8 +495,8 @@ function Profile() {
                             </div>
                         </div>
                         <div className="righteducate">
-                            {user.education.map(edu => {
-                                return (<div className="educateCover">
+                            {user.education && user.education.map((edu, index) => {
+                                return (<div key={index} className="educateCover">
                                     <div className="educateContent">
                                         <p id="ImgName2">{edu.instituteName}</p>
                                         <p id="ImgText2">{edu.degree} {edu.department} {edu.startYear}-{edu.gradYear}</p>

@@ -86,9 +86,9 @@ function Header(props) {
                                             EVENTS
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a href={void (0)} className="dropdown-item">Magnum Opus</a></li>
-                                            <li><a href={void (0)} className="dropdown-item">Convocations</a></li>
-                                            <li><Link className="dropdown-item" to="/events">All Events</Link></li>
+                                            <li><a href={void (0)} onClick={() => navigate("/events", {state: "magnum"})} className="dropdown-item">Magnum Opus</a></li>
+                                            <li><a href={void (0)} onClick={() => navigate("/events", {state: "convocation"})} className="dropdown-item">Convocations</a></li>
+                                            <li><a href={void (0)} onClick={() => navigate("/events", {state: "all"})} className="dropdown-item">All Events</a></li>
                                         </ul>
                                     </li>
                                     <li className="nav-item dropdown">
@@ -97,10 +97,9 @@ function Header(props) {
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/stories", { state: "STORY" })}>Alumni Stories</a></li>
-                                            <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/stories", { state: "NEWSLETTER" })}>Alumni Magazine</a></li>
-                                            <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/stories", { state: "STORY" })}>Institute Updates</a></li>
+                                            <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/stories", { state: "UPDATES" })}>Institute Updates</a></li>
                                             <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/gallery")}>Gallery</a></li>
-                                            <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/stories", { state: "STORY" })}>Alumni Achievements</a></li>
+                                            <li><a href={void (0)} className="dropdown-item" onClick={() => navigate("/stories", { state: "ACHIEVEMENTS" })}>Alumni Achievements</a></li>
                                         </ul>
                                     </li>
                                     <li className="nav-item dropdown">

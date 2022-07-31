@@ -35,7 +35,47 @@ function Login() {
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
-
+    const getUser = () => {
+        fetch("http://localhost:8080/login/success", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
+        })
+          .then((response) => {
+            if (response.status === 200) return response.json();
+            throw new Error("authentication has been failed!");
+          })
+          .then((resObject) => {
+            if(resObject!=null){
+                if(resObject.data && resObject.data==="Not Google"){
+                    alert("You have created Alumni account by this Email, Please Login by that.");
+                }else{
+                    dispatch(successlogin(resObject));
+                }
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+    async function googleLogin(){
+        window.open("http://localhost:8080/auth/google", "_self");
+        getUser();
+    }
+    async function facebookLogin(){
+        window.open("http://localhost:8080/auth/facebook", "_self");
+        getUser();
+    }
+    async function linkedinLogin(){
+        window.open("http://localhost:8080/auth/linkedin", "_self");
+        getUser();
+    }
+    // useEffect(() => {
+    // }, []);
     const checkUser = (e) => {
         e.preventDefault();
         if (!isValidEmail(signupdata.email)) {
@@ -54,7 +94,6 @@ function Login() {
             });
         }
     };
-
     function handleCheck(e) {
         if (e.target.name === "password") {
             const value = e.target.value;
@@ -141,9 +180,9 @@ function Login() {
                     <div className="loginRight">
                         <div className="loginRightMain" style={{ display: curpage ? "block" : "none" }} id="login1">
                             <p id="headTextRight">Choose any one of the following to Signup/Login</p>
-                            <button className="loginRightButton" id="rightbtn1">Connect with Facebook</button>
-                            <button className="loginRightButton" id="rightbtn2">Connect with Google</button>
-                            <button className="loginRightButton" id="rightbtn3">Connect with Linkedin</button>
+                            <button className="loginRightButton" onClick={facebookLogin} id="rightbtn1">Connect with Facebook</button>
+                            <button className="loginRightButton" onClick={googleLogin} id="rightbtn2">Connect with Google</button>
+                            <button className="loginRightButton" onClick={linkedinLogin} id="rightbtn3">Connect with Linkedin</button>
                             <div className="ORclass">
                                 <hr className="ORhr" />
                                 <span className="ORclassMain">OR</span>

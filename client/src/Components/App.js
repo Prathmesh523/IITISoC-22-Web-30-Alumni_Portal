@@ -23,6 +23,8 @@ import Profile from "./Profile";
 import Signup from "./Signup";
 import Test from "./Test";
 import DirectoryAdmin from "./DirectoryAdmin";
+import StoriesIn from "./StoriesIn";
+import Email from "./Email";
 import logo from "./images/logo.jpg";
 
 
@@ -52,6 +54,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/auth" element={<Authorize />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/email" element={<Email />} />
+          <Route path="/storiesin" element={<StoriesIn />} />
           <Route path="/adirectory" element={<DirectoryAdmin />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

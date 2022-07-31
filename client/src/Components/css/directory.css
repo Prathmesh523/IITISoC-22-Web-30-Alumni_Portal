@@ -70,3 +70,24 @@
 .card:hover {
     box-shadow: 2.5px 2px 2.5px 2px #d4dcdc;
 }
+.cardtitle {
+  font-size: 1.05rem;
+}
+.cardtext {
+  font-size: 0.9rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 0;
+  color: #3b5252;
+}
+.add-user {
+  width: 100%;
+  font-size: 0.9em;
+  border-top: 1px solid #c6d1e3;
+  padding: 5px 1%;
+  text-align: center;
+  color: #0f3573;
+  cursor: pointer;
+}
+.add-user:hover {
+  background-color: #e6e8ea;
+}

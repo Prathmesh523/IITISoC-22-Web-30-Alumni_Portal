@@ -47,18 +47,18 @@
     border-bottom-right-radius: 51px;
     float: left;
 }
-.add-story-photo a{
+.new-div{
     margin: auto 4%;
     text-decoration: none;
     color: rgb(27, 27, 139);
     cursor: pointer;
 }
-.add-story-photo a:hover {
+.new-div:hover {
     color: rgb(131, 82, 177);
 }
 .add-story-footer {
     padding-right: 2.5%;
-    height: 50px;
+    height: 50px; 
     color: rgb(20, 20, 135);
 }
 .add-story-footer input{

@@ -1,12 +1,9 @@
 const mongoose = require("mongoose");
+const findOrCreate = require('mongoose-findorcreate')
 
 const userSchema = new mongoose.Schema({
-    photo: {
-        img:
-        {
-            data: Buffer,
-            contentType: String
-        }
+    profile: {
+        type: String
     },
     status: {
         type: String
@@ -18,6 +15,15 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     password: {
+        type: String
+    },
+    googleId: {
+        type: String
+    },
+    facebookId: {
+        type: String
+    },
+    linkedinId: {
         type: String
     },
     name: {
@@ -76,5 +82,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+userSchema.plugin(findOrCreate);
 const User = mongoose.model("users", userSchema);
 module.exports = User;

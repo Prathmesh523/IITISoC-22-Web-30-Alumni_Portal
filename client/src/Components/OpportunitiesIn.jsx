@@ -51,12 +51,14 @@ function OpportunitiesIn() {
                     <p className="jobsin-paran"><PersonIcon style={{fontSize: "1.1em", margin: "0 10px 5px 10px"}} />POSTED BY</p>
                     <img className="jobsin-imag" src={user} alt="" />
                     <table className="jobsin-tab">
+                    <tbody>
                         <tr>
                             <td style={{fontSize: "1.1em", fontWeight: "500"}}>{op.by}</td>
                         </tr>
                         <tr>
                         <td>On {op.publishedOn.substring(0,10)}</td>
                         </tr>
+                    </tbody>
                     </table>
                 </div>
                 <hr />

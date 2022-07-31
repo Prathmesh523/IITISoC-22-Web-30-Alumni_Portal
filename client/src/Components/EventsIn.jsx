@@ -4,7 +4,6 @@ import {useLocation} from 'react-router-dom';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import magnum from "./images/magnum opus 2022.jpg";
 import webtraffic from "./images/web-traffic.png";
 
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -22,7 +21,7 @@ function EventsIn() {
         <div className="eventsin-container">
             <div className="eventsin-blue">
                 <p className="eventsin-para1">{event.name}</p>
-                <p className="eventsin-date"><CalendarMonthIcon style={{fontSize: "1.2em"}} /> {event.date.substring(0,10) + " " + event.time} </p>
+                <p className="eventsin-date"><CalendarMonthIcon style={{fontSize: "1.2em"}} /> {event.date.substring(0,8)+new Date(event.date).getDate() + " " + event.time} </p>
             </div>
             <div className="white">
                 <div className="eventsin-info">
@@ -43,9 +42,9 @@ function EventsIn() {
             </div>
             <div className="eventsin-card">
                 <div className="eventsin-image">
-                    <img src={`data:image/png;base64,${base64String}`} alt="" height="330px" width="340px" />
+                    <img src={event.photo.data} alt="" height="330px" width="340px" />
                     <img className="eventsin-tinylap" src={webtraffic} alt="" />
-                    <p style={{float: "right", marginRight: "110px", marginTop: "12px"}}>Online event</p>
+                    <p style={{float: "right", marginRight: "110px", marginTop: "12px"}}>{event.platform} event</p>
                 </div>
                 <hr />
                 <div className="eventsin-content">

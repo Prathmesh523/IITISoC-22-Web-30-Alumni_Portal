@@ -15,6 +15,7 @@ function Signup() {
     const userinfo = useSelector(state => state.user);
     const dispatch = useDispatch();
     const [formdata, setformdata] = useState({
+        id: userinfo.user._id,
         email: userinfo.user.email,
         role: "",
         department: "",
@@ -42,10 +43,10 @@ function Signup() {
             navigate("/profile");
         }
     }, [userinfo]);
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setformdata({ ...formdata, dob: startDate });
-        Axios.post("http://localhost:8080/signup-data", formdata).then((response) => {
+        await Axios.post("http://localhost:8080/signup-data", formdata).then((response) => {
             dispatch(successlogin(response.data));
         });
     }
@@ -63,7 +64,7 @@ function Signup() {
             <div style={{ paddingBottom: "66px" }}>
                 <div className="title-small-s">{(size.width < 800) ? "IIT INDORE" : "Indian Institute of Technology Indore"}</div>
                 <div style={{ float: "left", padding: "8px" }}>
-                    <div style={{ float: "left" }}><AccountCircleIcon style={{ fontSize: "45px", color: "#1e124a", marginRight: "10px" }} /></div>
+                    <div style={{ float: "left" }}>{userinfo.user.profile?<img style={{ fontSize: "45px", color: "#1e124a", marginRight: "10px" }} src={userinfo.user.profile} />:<AccountCircleIcon style={{ fontSize: "45px", color: "#1e124a", marginRight: "10px" }} />}</div>
                     <div style={{ float: "left" }}><table style={{ fontSize: "0.9em" }}>
                         <tbody>
                             <tr><th style={{ fontWeight: "500", color: "#436970" }}>{(userinfo.user ? userinfo.user.name : "")}</th></tr>
