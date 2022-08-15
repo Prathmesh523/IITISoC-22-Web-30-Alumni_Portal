@@ -1,0 +1,54 @@
+.cont {
+    width: 100%;
+}
+.top-cont
+{
+    text-align: center;
+    margin: 0 350px;
+}
+.bottom-cont{
+    margin-top: 20px;
+    background-color: rgb(246, 244, 244);
+    padding: 10px 0;
+    
+}
+.first-c
+{
+    text-align: center;
+    background-color: white;
+    width: 53%;
+    margin: 20px 0 20px 350px;
+    padding: 20px 20px 20px 20px;
+}
+.second-c
+{
+    background-color: white;
+    width: 53%;
+    margin: 0 0 20px 350px;
+    padding: 20px 50px 20px 50px;
+}
+.boldd
+{
+    font-weight: bold;  
+}
+.blue-bold
+{
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(23, 83, 136);
+}
+.black-bold
+{
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+.personal-butt
+{
+    color: white;
+    background-color: rgb(23, 83, 136);
+    height: 40px;
+    width: 130px;
+    font-size: 15px;
+    border-radius: 8px;
+}

@@ -1,0 +1,518 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.adminMain {
+    width: 100%;
+    height: 2200px;
+    font-family: "DroidArabicKufi", "Roboto", "Helvetica", "Arial", sans-serif !important;
+    background-color: #33699e11;
+    display: flex;
+    justify-content: left;
+}
+
+/*Left Side*/
+.adminLeft {
+    width: 21%;
+    height: 100%;
+    display: block;
+    margin-top: 1px;
+    margin-left: 1px;
+    margin-right: 5px;
+    background-color: white;
+    padding: 2px;
+}
+
+.adminLBox {
+    width: 100%;
+    height: 40px;
+    text-align: left;
+    padding: 37px;
+    border-radius: 2%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.adminLBox:hover {
+    background-color: #33699e11;
+}
+
+.adminLBox a {
+    text-decoration: none;
+    color: #366BA1;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.adminLBox i {
+    padding-right: 12px;
+}
+
+/*Top-Mid-Right Side*/
+.adminMidRight {
+    width: 75%;
+    min-height: 39%;
+    height: 100%;
+    margin-top: 5px;
+    margin-left: 2%;
+    display: block;
+    padding: 1%;
+}
+
+.community {
+    width: 65%;
+    height: 400px;
+    margin-top: 5%;
+    /*  background-color: rgb(38, 0, 255);*/
+    display: flex;
+    justify-content: left;
+    margin-left: 0px;
+    margin-right: auto;
+
+}
+
+.quickActions {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 2px;
+    display: block;
+}
+
+.adminRBox {
+    width: 100%;
+    height: 40px;
+    text-align: left;
+    padding: 32px;
+    border-radius: 2%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.adminRBox:hover {
+    background-color: #33699e11;
+}
+
+.adminRBox a {
+    text-decoration: none;
+    color: #366BA1;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.adminRBox i {
+    padding-right: 12px;
+}
+
+
+#quickText {
+    margin-top: -9%;
+}
+
+.QAWrap {
+    width: 30%;
+    height: 400px;
+    display: block;
+    margin-top: 3%;
+    margin-right: 0px;
+}
+
+.statsCom {
+    width: 50%;
+    height: 55%;
+    background-color: mediumblue;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    box-shadow: 0px -15px 0px 0px rgb(0, 0, 154);
+}
+
+#stattext{
+    margin-top: -50px;
+    margin-bottom: 27px;
+    color: mediumblue;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#adminComText{
+    margin-top: -27px;
+    margin-bottom: 10px;
+    color: mediumblue;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.adminCom {
+    width: 50%;
+    height: 55%;
+    background-color: mediumseagreen;
+    border-top: 2px solid white;
+    box-shadow: 0px -15px 0px 0px rgb(25, 138, 76);
+}
+
+.recordNum{
+    width: 100%;
+    height: 60%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.pendNum{
+    width: 100%;
+    height: 60%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.viewSec{
+    width: 100%;
+    height: 40%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 35px;
+    padding-bottom: 25px;
+}
+
+.recViewBtn{
+    margin-left: 95px;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 30% 30% 30% 30%;
+}
+
+.recViewBtn:hover{
+    background-color: white;
+    color: mediumblue;
+    cursor: pointer;
+}
+
+
+.pendViewBtn{
+    margin-left: 95px;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 30% 30% 30% 30%;
+}
+
+.pendViewBtn:hover{
+    background-color: white;
+    color: mediumseagreen;
+    cursor: pointer;
+}
+
+
+.recordText{
+    color: white;
+    font-size: 80px;
+    width: 100%;
+    display: flex;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.recordText i{
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+.pendText{
+    color: white;
+    font-size: 80px;
+    width: 100%;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.pendText p{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.pendText i{
+    margin-right: 0;
+}
+
+.topWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bottomWrap1 {
+    width: 100%;
+    height: 22%;
+    display: block;
+    margin-bottom: 5%;
+    border-top: 1px solid #1c55b04f;
+}
+
+.bottomWrap2 {
+    width: 100%;
+    height: 40%;
+    display: block;
+    margin-bottom: 5%;
+    border-top: 1px solid #1c55b04f;
+}
+
+.distribution{
+    width: 100%;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 5%;
+    padding: 0.5%;
+}
+
+.disCard1{
+    width: 48%;
+    margin-right: 2%;
+    height: 48%;
+    margin-bottom: 2%;
+    background-color: white;
+    display: block;
+}
+
+.disCard2{
+    width: 48%;
+    margin-left: 2%;
+    height: 48%;
+    margin-bottom: 2%;
+    background-color: white;
+    display: block;
+}
+
+.disCard3{
+    width: 48%;
+    margin-right: 2%;
+    height: 48%;
+    background-color: white;
+    display: block;
+}
+
+.disCard4{
+    width: 48%;
+    margin-left: 2%;
+    height: 48%;
+    background-color: white;
+    display: block;
+}
+
+.cardRow{
+    width: 100%;
+    min-height: 10%;
+    height: auto;
+    display: flex;
+    background-color: #BDEDFF;
+    align-items: center;
+    padding: 2%;
+    color: #366BA1;
+    font-weight: bold;
+}
+
+.cardRowText{
+    width: 100%;
+    min-height: 0%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 0.5%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+
+.cardRowText .left i{
+    margin-right: 10px;
+    color: #20a9db;
+}
+
+.cardRow .left{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    margin-left: 0;
+    font-size: 18px;
+}
+
+.cardRow .right{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    font-size: 18px;
+}
+
+.disCard1 .cardRowText .left{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    margin-left: 0;
+    font-size: 20px;
+    padding: 4%;
+}
+
+.disCard2 .cardRowText .left{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    margin-left: 0;
+    font-size: 17px;
+    padding: 1.5%;
+}
+
+.disCard3 .cardRowText .left{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    margin-left: 0;
+    font-size: 17px;
+    padding: 1.5%;
+}
+
+.disCard4 .cardRowText .left{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    margin-left: 0;
+    font-size: 17px;
+    padding: 1.5%;
+}
+
+.disCard1 .cardRowText .right{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    font-size: 20px;
+    padding: 4%;
+}
+
+.disCard2 .cardRowText .right{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    font-size: 17px;
+    padding: 1.5%;
+}
+
+
+.disCard3 .cardRowText .right{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    font-size: 17px;
+    padding: 1.5%;
+}
+
+
+.disCard4 .cardRowText .right{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    font-size: 17px;
+    padding: 1.5%;
+}
+
+#profileOverView1{
+    padding: 1%;
+    font-size: 22px;
+    font-weight: bold;
+    color: mediumblue;
+}
+
+#profession{
+    padding: 1%;
+    font-size: 22px;
+    font-weight: bold;
+    color: mediumblue;
+}
+
+#profileOverView2{
+    padding: 1%;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(0, 0, 205, 0.692);
+}
+.graph{
+    width: 100%;
+    height: 80%;
+    background-color: white;
+}
+.graphTop{
+    width: 100%;
+    height: 10%;
+    font-size: 18px;
+    font-weight: 400;
+    border-bottom: 1px solid #1c55b04f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#year{
+    font-size: 17px;
+    font-weight: bold;
+    margin-right: 60px;
+    color:#366BA1;
+    cursor: pointer;
+}
+
+#division{
+    font-size: 17px;
+    font-weight: bold;
+    margin-right: 60px;
+    color:#366BA1;
+    cursor: pointer;
+}
+
+#course{
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 30px;
+    color:#366BA1;
+    cursor: pointer;
+}
+
+.graphTop a{
+    text-decoration: none;
+    color:#366BA1;
+}
+
+.graphTop i {
+    margin-right: 5px;
+}

@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loginMain{
+    display: block;
+    
+}
+
+.loginBlue {
+    display: block;
+    height: 200px;
+    width: 100%;
+    padding-top: 4%;
+    padding-bottom: 60px;
+    padding-left: 11%;
+    text-align: justify;
+    font-size: 30px;
+    color: white;
+    font-weight: 400;
+    background: #064789;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.LoginBelow {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    max-height: 55%;
+}
+
+.LoginForm {
+    width: 750px;
+    max-width: 750px;
+    min-width: 400px;
+    height: 410px;
+    max-height: 1000px;
+    min-height: 250px;
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 100px;
+    z-index: 2;
+    background-color: white;
+    box-shadow: 1px 4px 5px 1px #0647897c;
+    box-sizing: border-box;
+}
+
+.loginLeft{
+    width: 42%;
+    height: 100%;
+    padding-top: 45px;
+    padding-bottom: 12px;
+    border: none;
+    border-right: 1px solid black;
+    display: block;
+    text-align: center;
+    justify-content: center;
+}
+
+.LoginLeftImg{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 150px;
+    margin-bottom: 10px;
+}   
+
+.LoginLeftText{
+    display: block;
+    text-align: center;
+    justify-content: center;
+    height: 180px;
+    padding: 5px;
+}
+
+#headText{
+    font-size: 28px;
+    font-weight: 400;
+    font-family: "Helvetica", "Arial", sans-serif;
+    margin-bottom: 25px;
+}
+
+#subText{
+    font-size: 16px;
+    font-weight: 400;
+    color: gray;
+    font-family: "Helvetica", "Arial", sans-serif;
+    padding-bottom: 10px;
+}
+
+#subText2{
+    font-size:14px;
+    font-weight: 400;
+    color: rgba(128, 128, 128, 0.755);
+    font-family: "Helvetica", "Arial", sans-serif;
+    padding-bottom: 15px;
+    margin-top: 2%;
+}
+
+.loginRight{
+    display: block;
+    padding: 40px;
+    width: 58%;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginRightMain{
+    background-color: none;
+    height: 100%;
+    width: 100%;
+    padding-left: 0%;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginRightMain2{
+    background-color: none;
+    height: 100%;
+    width: 100%;
+    padding-left: 0%;
+    margin-top: -18px;
+}
+
+#headTextRight{
+    font-size: 22px;
+    font-weight: 300;
+    font-family: "Helvetica", "Arial", sans-serif;
+    margin-bottom: 20px;    
+}
+
+.loginRightButton{
+    border: none;
+    background-color: none;
+    width: 100%;
+    min-width: 80%;
+    height: 10%;
+    margin-bottom: 5%;
+    text-transform: uppercase;
+    color: white;cursor: pointer;
+    box-shadow: 1px 1px 5px 2px #06478958;
+    font-size: 16px;
+}
+
+.loginRightButton:hover{
+    background: rgba(158,158,158, 0.20);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+#rightbtn1{
+    background-color: #064789 !important;
+}
+
+#rightbtn2{
+    background-color: rgb(229,57,53) !important;
+}
+#rightbtn3{
+    background-color:  rgb(3,155,229) !important;
+}
+
+.ORclass{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.ORclassMain{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    background-color: rgba(128, 128, 128, 0.318);
+    color: black;
+    z-index: 5;   
+}
+
+.ORhr{
+    width: 45%;
+    padding-left: 2px;
+}
+
+.RightFirstForm{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;   
+    justify-content:baseline;
+}
+
+.formitem{
+    display: block;
+    width: 87%;
+    margin-right:5%;
+    margin-bottom: 3%;
+}
+
+
+.formitem2{
+    display: block;
+}
+
+.formitem1{
+    display: block;
+    width: 45%;
+    margin-right:5%;
+    margin-bottom: 3%;
+}
+
+.formitem12{
+    display: block;
+    width: 45%;
+    margin-left: 2%;
+    margin-bottom: 3%;
+}
+
+.formitem3{
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.formitem33{
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 8%;
+}
+
+.formitem4{
+    display: flex;
+    width: 100%;
+    margin-bottom: 3%;
+    height: 20%;
+}
+
+.email, label {
+    display:block;
+    width: 100%;
+}
+
+.nextbtn{
+    padding-top: 100%;
+    color: green;
+    background: none;
+    outline: none;
+    border: 0;
+}
+
+.btn1{
+    background-color: none;
+    border: none;
+    height: 30px;
+    padding: 4px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.btn2{
+    background-color: none;
+    border: none;
+    height: 30px;
+    padding: 4px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    margin-top: 25px;
+}
+
+.forgetPart{
+    background: none;
+    border: none;
+    height: 30px;
+    padding: 4px;
+    outline: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: gray;
+    margin-top: 10px;
+    width: 100%;
+    
+}
+
+#forgetpass{
+    width: 60%;
+    margin-left: auto; 
+    margin-right: 0;
+    text-align: right;
+}
+
+#loginwithout{
+    width: 80%;
+    margin-left: auto; 
+    margin-right: 0;
+    text-align: right;
+}
+
+#forgetpass:hover, #loginwithout:hover{
+    color: #095db0f8;
+}
+
+#backbtn{
+    margin-right: 60%;
+    color:  rgb(3,155,229) !important;
+    background: none;
+    color: white;cursor: pointer; 
+}
+
+#backbtn:hover{
+    background-color: rgba(128, 128, 128, 0.179);
+}
+
+#signupbtn, #loginbtn{
+    background-color: #064789;
+    width: 80px;
+    border: 1px solid white;
+    border-radius: 4%;
+    color: white;cursor: pointer;
+    box-shadow: 0.5px 1px 5px 1px #06478958;
+}
+
+.nextbtn:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.234);
+}
+
+.nextbtn:focus{
+    border-bottom: none;
+}
+
+.email{
+    border: none;
+    background-color: none;
+    border-bottom:1px solid  rgba(128, 128, 128, 0.486);
+    height: 32px;
+    font-size: 15px;
+}
+.email:focus{
+    border: none;
+    border-bottom: 2px solid #064789bf;
+    outline: none !important;
+}
+
+.email::placeholder {
+    color: rgba(128, 128, 128, 0.486);
+  }
+
+.email:focus::placeholder {
+    color: transparent;
+  }
+
+.formlabel{
+    color: #095db0f8;
+    font-size: 14px;
+}

@@ -1,0 +1,157 @@
+.head-set {
+    height: 900px;
+    padding-top: 8%;
+    background: linear-gradient(180deg, #064789 25.35%, #e7eceb 0);
+}
+.settings {
+    background-color: white;
+    box-shadow: 1px 1px 4px 4px rgb(191, 221, 226);
+    border-radius: 1%;
+    margin: 0 30% 8%;
+}
+.title {
+    padding: 2%;
+    border-bottom: 1px solid rgb(177, 216, 222);
+}
+.link-item {
+    text-decoration: none;
+    color: black;
+}
+.link-item:hover {
+    color: black;
+}
+.buttons-container {
+    text-align: center;
+    padding: 2% 8%;
+}
+.buttons {
+    background-color: white;
+    border: 1px solid rgb(153, 166, 170);
+    border-radius: 5%;
+    font-size: 0.85em;
+    padding: 1%;
+    margin-right: 6%;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0.2px 0.2px 0.2px 0.2px rgb(153, 166, 170);
+}
+.buttons:hover { 
+    background-color: rgb(222, 234, 235);
+}
+.settings-container {
+    padding: 3% 5%;
+}
+.black-box {
+    width: 100%;
+    height: 40%;
+    background-color: #064789;
+    color: white;
+    padding: 8% 11%;
+    font-size: 30px;
+    float: left;
+}
+.working-div {
+    width: 50%;
+    left: 48%;
+    top: 63%;
+    display: block;
+    height: 35%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: white;
+    border: 1px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+.form-control, .form-control:focus, .input-group-addon {
+	border-color: #e1e1e1;
+	border-radius: 0;
+}
+.signup-form {
+	width: 100%;
+    height: 100%;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+.signup-form form {		
+	border-radius: 1px;
+	background: #fff;
+	padding: 0 30px;
+}
+.signup-form .form-group {
+	margin-bottom: 25px;
+}
+
+.signup-form .form-control {
+	min-height: 40px;
+	box-shadow: none !important;
+	border-width: 0 0 1px 0;
+}
+.form-control:focus {
+    border-color: blue;
+}	
+.signup-form .input-group-addon {
+	text-align: center;
+	background: none;
+	padding-left: 5px;
+}
+
+
+@media only screen and (max-width: 1450px) {
+    .buttons {
+        margin-bottom: 2%;
+    }
+    .settings {
+        margin: 0 25% 8%;
+    }
+    .title {
+        padding-bottom: 2.5%;
+    }
+}
+@media only screen and (max-width: 1350px) {
+    .settings {
+        margin: 0 20% 8%;
+    }
+    .title {
+        padding-bottom: 3%;
+    }
+}
+@media only screen and (max-width: 1250px) {
+    .settings {
+        margin: 0 15% 8%;
+    }
+    .title {
+        padding-bottom: 3.5%;
+    }
+}
+@media only screen and (max-width: 1150px) {
+    .settings {
+        margin: 0 10% 8%;
+    }
+    .title {
+        padding-bottom: 4%;
+    }
+}
+@media only screen and (max-width: 850px) {
+    .settings {
+        margin: 0 5% 8%;
+    }
+    .buttons-container {
+        padding: 2% 4%;
+    }
+}
+@media only screen and (max-width: 680px) {
+    .settings {
+        margin: 0 2% 8%;
+    }
+    .buttons-container {
+        padding: 2% 2%;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .settings {
+        margin: 0 0% 8%;
+    }
+    .buttons-container {
+        padding: 2% 0%;
+    }
+}

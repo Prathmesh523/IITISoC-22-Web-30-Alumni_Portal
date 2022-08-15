@@ -1,0 +1,129 @@
+.eventsin-container{
+    height: 1000px;
+    background-color: #f6eeee;
+}
+.eventsin-blue
+{
+    width: 100%;
+    height: 200px;
+    background-color: black;   
+}
+.eventsin-para1
+{
+    color: white;
+    padding: 60px 0 0 600px;
+    font-size: 25px;
+}
+.eventsin-link {
+    margin-left: 3%;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: green;
+    font-weight: 700;
+}
+.eventsin-para2
+{
+    font-size: 12px;
+}
+.eventsin-white
+{
+    width: 100%;
+}
+.eventsin-card
+{
+    position: absolute;
+    top: 170px;
+    left: 200px;
+    width: 340px;
+    height: 700px;
+    border: 1px solid black;
+    border-radius: 1%;
+    background-color: rgb(253, 249, 249);
+}
+.eventsin-info
+{
+    margin: 0 200px 0 580px;
+}
+.eventsin-content
+{
+    padding-top: 15px;
+    padding-left: 40px;
+    font-size: 15px;
+}
+.eventsin-eventname
+{
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
+    padding: 10px 0 0 15px;
+    border-radius: 20px;
+    background-color: rgb(192, 179, 179);
+}
+.eventsin-eventtime
+{
+    width: 80px;
+    height: 25px;
+    padding: 8px 0 0 15px;
+    border-radius: 10px;
+    background-color: gray;
+}
+.eventsin-share
+{
+    margin-top: 20px;
+}
+.eventsin-img3
+{
+    float: right;
+    margin: 0px 60px 0 0;
+}
+.eventsin-round
+{
+    
+    padding: 0px 10px 0 0;
+    margin: 0 10px 70px 0;
+    height: 30px;
+    width: 30px;
+}
+.eventsin-tiny
+{
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+.eventsin-paran
+{
+    font-weight: 540;
+    font-size: 1.2em;
+    margin-top: 50px;
+}
+.eventsin-tinylap
+{
+    height: 30px;
+    width: 30px;
+    margin: 10px 0px 0px 90px;
+}
+.eventsin-paramid
+{
+    float: right;
+    margin-right: 130px;
+}
+.eventsin-topinfo
+{
+    font-family: 'Gentium Book Plus', serif;
+}
+.eventsin-bottominfo
+{
+    font-family: 'Gentium Book Plus', serif;
+}
+.eventsin-date
+{
+    color: white;
+    padding: 15px 0px 100px 600px;
+    font-size: 18px;
+}
+.eventsin-calendar
+{
+    background-color: white;
+    height: 25px;
+    width: 25px;
+}
