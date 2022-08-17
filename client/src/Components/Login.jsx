@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./css/login.css";
+import {useLocation} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import validator from 'validator';
@@ -8,6 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Logo from "./images/logo.jpg";
 import Axios from "axios";
+import jwt_decode from "jwt-decode";
 import { Tooltip } from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux';
 import { startlogin, successlogin, failedlogin } from "../actions";
@@ -31,49 +33,24 @@ function Login() {
     const [login, setlogin] = useState(false);
     const [signup, setsignup] = useState(false);
     const navigate = useNavigate();
+    const search = useLocation().search;
+    const token = new URLSearchParams(search).get('user');
+    let users;
+    if(token){
+        users=jwt_decode(token);
+        dispatch(successlogin(users.user));
+        navigate("/login");
+    }
 
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
-    const getUser = () => {
-        fetch("http://localhost:8080/login/success", {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-          },
-        })
-          .then((response) => {
-            if (response.status === 200) return response.json();
-            throw new Error("authentication has been failed!");
-          })
-          .then((resObject) => {
-            if(resObject!=null){
-                if(resObject.data && resObject.data==="Not Google"){
-                    alert("You have created Alumni account by this Email, Please Login by that.");
-                }else{
-                    dispatch(successlogin(resObject));
-                }
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
-    async function googleLogin(){
+    function googleLogin(){
         window.open("http://localhost:8080/auth/google", "_self");
-        getUser();
     }
     async function facebookLogin(){
         window.open("http://localhost:8080/auth/facebook", "_self");
-        getUser();
     }
-    // async function linkedinLogin(){
-    //     window.open("http://localhost:8080/auth/linkedin", "_self");
-    //     getUser();
-    // }
     const checkUser = (e) => {
         e.preventDefault();
         if (!isValidEmail(signupdata.email)) {

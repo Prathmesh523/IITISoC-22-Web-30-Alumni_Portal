@@ -6,6 +6,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 function EventCards(props) {
     const navigate = useNavigate();
+    const date = new Date();
+    const d1 = new Date(props.start.substring(0,10));
     return (
         <div className="cardbox">
             <div className="card-img-box">
@@ -30,7 +32,7 @@ function EventCards(props) {
                     </tbody>
                 </table>
                 <div style={{ width: "100%" }}>
-                    <button type="button" className="btn btn-secondary btn-sm rounded-pill" disabled>Past Event</button>
+                    <button type="button" className="btn btn-secondary btn-sm rounded-pill" disabled>{(d1>=date)?"Future Event":"Past Event" }</button>
                     <button onClick={() => navigate("/eventsin", {state: props.forIn})} className="btn btn-primary rounded-0 float-end">View</button>
                 </div>
             </div>

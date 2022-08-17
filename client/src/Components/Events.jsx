@@ -210,7 +210,7 @@ function Events() {
                                 </div>
                                 <div style={{ display: formdata.platform === "Online" ? "block" : "none" }} className="col-md-12">
                                     <div className="input-group">
-                                        <input type="text" className="form-control shadow-none" onChange={handleChange} value={formdata.email} name="email" placeholder="Email Address" />
+                                        <input type="text" className="form-control shadow-none" onChange={handleChange} value={formdata.email} name="email" placeholder="Address" />
                                     </div>
                                 </div>
                                 <div className="col-12">

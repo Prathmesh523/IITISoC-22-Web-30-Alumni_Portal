@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import Select from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { joiningYears, graduateYears, departments, courses } from "./Arrays";
+import { joiningYears, graduateYears, departments, courses, countryList } from "./Arrays";
 import "./css/signup.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -100,13 +100,7 @@ function Signup() {
                             <p className="changee">Year of Graduation *</p>
                             <div className="boxx"><Select name="graduation" onChange={(option) => setformdata({ ...formdata, graduation: option.value })} options={graduateYears} styles={style} /></div>
                             <p className="changee">Location *</p>
-                            <select onChange={handleChange} name="location" id="" className="boxx">
-                                <option value="" defaultChecked hidden>Select Location</option>
-                                <option value="Indore">Indore</option>
-                                <option value="Sikkim">Sikkim</option>
-                                <option value="Lahore">Lahore</option>
-                                <option value="Rajasthan">Rajasthan</option>
-                            </select>
+                            <div className="boxx"><Select name="location" onChange={(option) => setformdata({ ...formdata, location: option.value })} options={countryList} styles={style} /></div>
                         </div>
                         <div className="righti">
                             <p className="changee">Division/Department *</p>

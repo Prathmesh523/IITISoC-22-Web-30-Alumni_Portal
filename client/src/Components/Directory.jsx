@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./css/directory.css";
 import Axios from "axios";
 import Select from "react-select";
-import Magnum from "./images/magnum opus 2022.jpg";
+import Dummy from "./images/Photo.jpeg";
 import DirectoryCard from "./DirectoryCard";
 import useWindowSize from "./WindowSize";
 import LegendToggleIcon from '@mui/icons-material/LegendToggle';
@@ -113,7 +113,7 @@ function Directory() {
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style={{ margin: "0 2%" }}>
                         {
                             filteredData && filteredData.map((data,index) => {
-                                return <DirectoryCard key={index} info={data} status={(userinfo.user)?userinfo.user.status:""} img={Magnum} title={data.name} content1={data.status + ", Class of "+data.yearOfJoining} content2={data.department} content3={data.location} />
+                                return <DirectoryCard key={index} info={data} status={(userinfo.user)?userinfo.user.status:""} img={data.profile?data.profile:Dummy} title={data.name} content1={data.status + ", Class of "+data.yearOfJoining} content2={data.department} content3={data.location} />
                             })
                         }
                     </div>

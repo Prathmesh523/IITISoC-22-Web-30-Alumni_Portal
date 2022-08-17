@@ -5,19 +5,17 @@ import PersonIcon from '@mui/icons-material/Person';
 
 function AuthCard(props) {
     const navigate = useNavigate();
-    const [type,settype] = useState("");
-    function rejectHandle() {
-        settype("reject");
-        handleClick();
-    }
-    function acceptHandle() {
-        settype("accept");
-        handleClick();
-    }
-    function handleClick() {
+    function acceptHandleClick() {
         Axios.post(
             "http://localhost:8080/changeStatus",
-            {username: props.username, type: type}
+            {username: props.username, type: "accept"}
+        );
+        navigate("/dashboard");
+    }
+    function rejectHandleClick() {
+        Axios.post(
+            "http://localhost:8080/changeStatus",
+            {username: props.username, type: "reject"}
         );
         navigate("/dashboard");
     }
@@ -41,8 +39,8 @@ function AuthCard(props) {
                 </table>
             </div>
             <div className="auth-card-button">
-                <button className="btn btn-outline-white me-2" type="button" onClick={rejectHandle}>REJECT</button>
-                <button className="btn btn-primary float-end" type="button" onClick={acceptHandle}>ACCEPT</button>
+                <button className="btn btn-outline-white me-2" method="button" onClick={rejectHandleClick}>REJECT</button>
+                <button className="btn btn-primary float-end" method="button" onClick={acceptHandleClick}>ACCEPT</button>
             </div>
         </div>
     );

@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const localStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
-// const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 module.exports = function (passport) {
   passport.use(
@@ -34,22 +33,16 @@ module.exports = function (passport) {
         if (user) {
           return cb(null, user);
         } else {
-          User.findOne({ username: profile.emails[0].value }, (error, presentUser) => {
-            if (presentUser) {
-              return cb(null, { id: 0 });
-            } else {
-              const newUser = new User({
-                googleId: profile.id,
-                name: profile.displayName,
-                profile: profile.photos[0].value,
-                username: profile.emails[0].value,
-                email: profile.emails[0].value,
-                status: "student"
-              });
-              newUser.save();
-              return cb(null, newUser);
-            }
-          })
+          const newUser = new User({
+            googleId: profile.id,
+            name: profile.displayName,
+            profile: profile.photos[0].value,
+            username: profile.emails[0].value,
+            email: profile.emails[0].value,
+            status: "student"
+          });
+          newUser.save();
+          return cb(null, newUser);
         }
       });
     }
@@ -76,37 +69,6 @@ module.exports = function (passport) {
       });
     }
   ));
-
-  // passport.use(new LinkedInStrategy({
-  //   clientID: process.env.LINKEDIN_CLIENT_ID,
-  //   clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-  //   callbackURL: "http://localhost:8080/auth/linkedin/signup",
-  //   scope: ['r_emailaddress', 'r_liteprofile'],
-  //   state: true
-  // }, function (accessToken, refreshToken, profile, done) {
-  //   process.nextTick(function () {
-  //     User.findOne({ linkedinId: profile.id }, (err, user) => {
-  //       if (user) {
-  //         return done(null, user);
-  //       } else {
-  //         User.findOne({ username: profile.emails[0].value }, (error, presentUser) => {
-  //           if (presentUser) {
-  //             return done(null, { id: 0 });
-  //           } else {
-  //             const newUser = new User({
-  //               linkedinId: profile.id,
-  //               name: profile.displayName,
-  //               username: profile.emails[0].value,
-  //               email: profile.emails[0].value
-  //             });
-  //             newUser.save();
-  //             return done(null, newUser);
-  //           }
-  //         })
-  //       }
-  //     });
-  //   });
-  // }));
 
   passport.serializeUser((user, cb) => {
     cb(null, user.id);

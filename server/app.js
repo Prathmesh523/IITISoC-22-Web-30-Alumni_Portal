@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const Jwt = require("jsonwebtoken");
 const User = require("./models/Users");
 const Event = require("./models/Events");
 const Story = require("./models/Stories");
@@ -43,13 +44,14 @@ app.use(passport.session());
 require("./passportConfig")(passport);
 
 app.get("/login/success", (req, res) => {
-    if (req.user === "Not Google") {
-        res.send({ data: "Not Google" })
-    } else {
+    if (req.user) {
         User.findOne({ username: req.user.username }, (err, user) => {
+            console.log(user);
             if (err) console.log(err);
             if (user) res.send(user);
         })
+    } else{
+        res.redirect("/login/success");
     }
 });
 app.get("/login/failed", (req, res) => {
@@ -66,21 +68,23 @@ app.get('/auth/google',
     }));
 
 app.get('/auth/google/signup',
-    passport.authenticate('google', { failureRedirect: "/login/failed", successRedirect: "http://localhost:3000/login" }));
+    passport.authenticate('google', { failureRedirect: "/login/failed" }), (req,res) => {
+        const user = req.user;
+        Jwt.sign({user}, process.env.KEY, (err, token) => {
+            res.redirect("http://localhost:3000/login?user="+token);
+        })
+    });
 
 app.get('/auth/facebook',
     passport.authenticate('facebook'));
 
 app.get('/auth/facebook/signup',
-    passport.authenticate('facebook', { failureRedirect: "/login/failed", successRedirect: "http://localhost:3000/login" }));
-
-// app.get('/auth/linkedin',
-//     passport.authenticate('linkedin'));
-
-// app.get('/auth/linkedin/signup',
-//  passport.authenticate('linkedin', { failureRedirect: '/login/failed', successRedirect: 'http://localhost:3000/login' }));
-
-// User Requests:
+    passport.authenticate('facebook', { failureRedirect: "/login/failed"}), (req,res) => {
+        const user = req.user;
+        Jwt.sign({user}, process.env.KEY, (err, token) => {
+            res.redirect("http://localhost:3000/login?user="+token);
+        })
+    });
 
 app.post("/addAuth", (req, res) => {
     Authlist.findOne({ username: req.body.username }, (err, list) => {
@@ -108,18 +112,19 @@ app.get("/getAuthlist", (req, res) => {
     });
 });
 
-app.post("/changeStatus", async (req,res) => {
-    if(req.body.type === "accept"){
+app.post("/changeStatus", async (req, res) => {
+    console.log(req.body);
+    if (req.body.type === "accept") {
         User.findOneAndUpdate({ username: req.body.username }, {
             $set: {
                 status: "alumni"
             }
         }, (err) => {
-            if(err) console.log(err);
+            if (err) console.log(err);
         });
     }
-    Authlist.findOneAndDelete({username: req.body.username}, (err) => {
-        if(err) console.log(err);
+    Authlist.findOneAndDelete({ username: req.body.username }, (err) => {
+        if (err) console.log(err);
     });
 });
 
@@ -170,8 +175,8 @@ app.post("/find-user", (req, res) => {
     });
 });
 
-app.post("/signup-data", (req, res) => {
-    User.updateOne({ _id: req.body.id }, {
+app.post("/signup-data", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ _id: req.body.id }, {
         $set: {
             role: req.body.role,
             department: req.body.department,
@@ -182,17 +187,9 @@ app.post("/signup-data", (req, res) => {
             location: req.body.location,
             dob: req.body.dob
         }
-    }, (err) => {
-        if (err) console.log(err);
-        else console.log("updated");
-    });
+    }, { new: true });
 
-    User.findOne({ email: req.body.email }, async (err, doc) => {
-        if (err) console.log(err);
-        if (doc) {
-            res.send(doc);
-        }
-    });
+    res.send(doc);
 });
 
 app.get("/logout", function (req, res) {
@@ -221,8 +218,8 @@ app.post("/login-user", (req, res, next) => {
 });
 
 
-app.post("/settings-data", (req, res) => {
-    User.updateOne({ username: req.body.username }, {
+app.post("/settings-data", async (req, res) => {
+    const doc = await User.findOneAndUpdate({ username: req.body.username }, {
         $set: {
             department: req.body.department,
             email: req.body.email,
@@ -232,18 +229,9 @@ app.post("/settings-data", (req, res) => {
             name: req.body.fname + " " + req.body.lname,
             phone: req.body.mobile
         }
-    }, (err) => {
-        if (err) console.log(err);
-        else console.log("updated");
-    });
+    }, { new: true });
 
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-        if (err) console.log(err);
-        if (doc) {
-            res.send(doc);
-            // console.log(doc);
-        }
-    });
+    res.send(doc);
 });
 
 app.get("/opportunities-data", (req, res) => {
